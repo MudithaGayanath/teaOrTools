@@ -30,7 +30,7 @@
         ?>
         <div class="row">
             <div class="col-12  col-lg-6">
-                <img src="img/login.jpg" alt="" class="w-100" />
+                <img src="img/login.jpg" alt="" class="w-100" ondblclick="goToAdminLogin();" />
             </div>
             <div class="col-12 col-lg-6 mt-lg-5">
                 <div class="row">
@@ -49,7 +49,7 @@
                     <div class="col-6 mt-2 text-end">
                        <a onclick="forget();">Forgot Passowrd?</a>
                     </div>
-                    <button class="btn btn-primary col-10 offset-1 mt-2" onclick="login();">Login</button>
+                    <button class="btn btn-primary col-10 offset-1 mt-2" onclick="login();"  >Login</button>
                     <button class="btn btn-warning col-10 offset-1 mt-2" onclick="regiter();">New to here</button>
                     
                 </div>
