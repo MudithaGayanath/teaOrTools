@@ -1059,3 +1059,33 @@ function viewMore(){
     
 }
 
+function goToAdminLogin(){
+    window.location = "adminLogin.php";
+}
+
+function adminLoginModel() {
+    var email = document.getElementById("adminEmail");
+    var password = document.getElementById("adminPassword");
+    var f = new FormData();
+    f.append("e" , email.value);
+    f.append("pw" , password.value);
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if( r.readyState == 4 && r.status == 200 ){
+            var text = r.responseText;
+            if ( text == "done"){
+                var adminModel = document.getElementById("adminModal");
+                var newModel = new bootstrap.Modal(adminModel);
+                newModel.show();
+            }else {
+                alert(text);
+            }
+
+        }
+    }
+    r.open("POST","adminLoginProcess1.php" , true);
+    r.send(f);
+
+   
+}
