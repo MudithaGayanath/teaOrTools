@@ -1089,3 +1089,23 @@ function adminLoginModel() {
 
    
 }
+function adminLogin() {
+    var vCode = document.getElementById("adminVericode");
+    var f = new FormData();
+    f.append("vc" , vCode.value);
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if( r.readyState == 4 && r.status == 200 ){
+            var text = r.responseText;
+            if ( text == "done"){
+                window.location="index.php";
+            }else {
+                alert(text);
+            }
+
+        }
+    }
+    r.open("POST","adminLoginProcess2.php" , true);
+    r.send(f);
+}
