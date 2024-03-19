@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <label for="condition">Status</label>
-                                        <select id="condition" class=" form-select">
+                                        <select id="status" class=" form-select">
                                             <?php
                                                 $statusRs = Database::search("SELECT * FROM `status`");
                                                 for ($i=0; $i < $statusRs -> num_rows; $i++) { 
@@ -132,10 +132,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-6">
-                                        <label for="ppi">Price Per Item</label>
+                                        <label for="price">Price Per Item</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Rs</span>
-                                            <input type="number" class="form-control" id="ppi" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["price"]);?>.00" >
+                                            <input type="number" class="form-control" id="price" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["price"]);?>" >
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -146,14 +146,14 @@
                                         <label for="diuc">Delivery In <?php echo($addressData["city_name"]);?> </label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Rs</span>
-                                            <input type="number" class="form-control" id="diuc" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["delevery_in_user_city"]);?>.00">
+                                            <input type="number" class="form-control" id="diuc" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["delevery_in_user_city"]);?>">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="dofuc">Delivery Out Of <?php echo($addressData["city_name"]);?> </label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Rs</span>
-                                            <input type="number" class="form-control" id="dofuc" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["delevery_outof_usre_city"]);?>.00">
+                                            <input type="number" class="form-control" id="dofuc" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["delevery_outof_usre_city"]);?>">
                                         </div>
                                     </div>
                                 </div>
