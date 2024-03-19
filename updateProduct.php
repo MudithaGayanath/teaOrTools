@@ -18,6 +18,7 @@
             $productData = $productRs -> fetch_assoc();
             $addressRs = Database::search("SELECT * FROM `user_has_address` INNER JOIN `city` ON
             user_has_address.city_city_id=city.city_id WHERE `user_email`='".$email."'");
+            $addressData = $addressRs -> fetch_assoc();
 
             ?>
             <!DOCTYPE html>
@@ -135,17 +136,17 @@
                                         <input type="number" id="qty" class=" form-control" value="<?php echo($productData["qty"]);?>"  />
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label for="diuc">Delivery In </label>
+                                        <label for="diuc">Delivery In <?php echo($addressData["city_name"]);?> </label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Rs</span>
-                                            <input type="number" class="form-control" id="diuc" aria-label="Amount (to the nearest dollar)">
+                                            <input type="number" class="form-control" id="diuc" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["delevery_in_user_city"]);?>.00">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label for="dofuc">Delivery Out Of </label>
+                                        <label for="dofuc">Delivery Out Of <?php echo($addressData["city_name"]);?> </label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Rs</span>
-                                            <input type="number" class="form-control" id="dofuc" aria-label="Amount (to the nearest dollar)">
+                                            <input type="number" class="form-control" id="dofuc" aria-label="Amount (to the nearest dollar)" value="<?php echo($productData["delevery_outof_usre_city"]);?>.00">
                                         </div>
                                     </div>
                                 </div>
