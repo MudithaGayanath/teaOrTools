@@ -165,7 +165,7 @@
                             </div>
                         </div>
                         <div class="row mb-5 mt-2">
-                            <button class=" btn btn-primary col-10 offset-1" onclick="addProduct();">Add Product</button>
+                            <button class=" btn btn-primary col-10 offset-1" onclick="updateProduct(<?php echo($pId)?>);">Update Product</button>
                         </div>
                     </div>
                     </div>
