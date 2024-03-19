@@ -49,10 +49,17 @@
                                 <h3> Product Images</h3>
                             </div>
                             <div class="col-12">
-                                <div class="row ">
-                                    <img src="img/empty.svg" class=" col-4  col-md-3  ms-md-5 mb-1  border-primary img-fluid rounded-start img-thumbnail" id="i0" />
-                                    <img src="img/empty.svg" class=" col-4  col-md-3 offset-md-1 mb-1   border-primary img-fluid rounded-start img-thumbnail" id="i1" />
-                                    <img src="img/empty.svg" class=" col-4 col-md-3 offset-md-1  mb-1  border-primary img-fluid rounded-start img-thumbnail" id="i2" />
+                                <div class="row justify-content-center">
+                                        <?php
+                                            $imgRS = Database::search("SELECT * FROM `product_img` WHERE `product_product_id`='".$pId."'");
+                                            for ($i=0; $i < $imgRS -> num_rows; $i++) { 
+                                                $imgData = $imgRS -> fetch_assoc();
+                                                ?>
+                                                 <img src="<?php echo($imgData["path"]);?>" style="width:450px;" class=" col-4  col-md-3  ms-md-5 mb-1  border-primary img-fluid rounded-start img-thumbnail"  />
+                                                <?php
+                                            }
+                                        ?>
+                                   
                                 </div>
                                 <div class="row mt-1">
                                     <div class="col-10 offset-1">
