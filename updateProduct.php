@@ -155,7 +155,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="discription">Product Discription</label>
-                                <textarea id="discription" cols="30" rows="10" class=" form-control"></textarea>
+                                <textarea id="discription" cols="30" rows="10" class=" form-control" disabled><?php echo($productData["discription"]);?></textarea>
                             </div>
                         </div>
 
