@@ -65,7 +65,7 @@
                                             <p class=" m-0">Rs.<?php echo($proData["price"]);?>.00</p>
                                             <p class=" m-0">QTY - <?php echo($proData["qty"]);?></p>
                                             <p class=" text-info fw-bold m-0">Active</p>
-                                            <button class="btn btn-success col-5">Update</button>
+                                            <button class="btn btn-success col-5" onclick="goToUpadteProduct(<?php echo($proData['product_id']);?>);">Update</button>
                                         </div>
                                         </div>
                                     </div>
