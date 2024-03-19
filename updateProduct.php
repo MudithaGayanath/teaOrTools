@@ -4,6 +4,7 @@
         if ( isset($_GET["pId"])){
             include("connection.php");
             $pId = $_GET["pId"];
+            $email = $_SESSION["u"]["email"];
             $productRs = Database::search("SELECT * FROM `product` INNER JOIN `brand_has_categorie` ON
             product.brand_has_categorie_id=brand_has_categorie.id INNER JOIN `brand` ON
             brand_has_categorie.brand_brand_id=brand.brand_id INNER JOIN `categorie` ON
@@ -15,6 +16,9 @@
             model_has_color.color_color_id=color.color_id INNER JOIN `status` ON
             product.status_status_id=status.status_id WHERE `product_id`='".$pId."'");
             $productData = $productRs -> fetch_assoc();
+            $addressRs = Database::search("SELECT * FROM `user_has_address` INNER JOIN `city` ON
+            user_has_address.city_city_id=city.city_id WHERE `user_email`='".$email."'");
+
             ?>
             <!DOCTYPE html>
                 <html lang="en">
