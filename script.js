@@ -1113,3 +1113,7 @@ function adminLogin() {
 function goToUpadteProduct(id) {
     window.location = "updateProduct.php?pId="+id;
 }
+
+function updateProduct(id) {
+    alert(id);
+}
