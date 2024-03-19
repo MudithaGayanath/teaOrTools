@@ -11,10 +11,10 @@
         <div class="col-12 text-center">
             <h1>Admin Login</h1>
         </div>
-        <div class="col-12 col-sm-10 col-md-8 offset-sm-1">
+        <div class="col-12 col-md-6">
             <img src="img/admin login.jpg" alt="" srcset="" class=" w-100">
         </div>
-        <div class="col-12">
+        <div class="col-12 col-md-6 mt-md-5">
             <div class="row">
                 <div class="col-12">
                     <label for="adminEmail">Email</label>
