@@ -1109,3 +1109,7 @@ function adminLogin() {
     r.open("POST","adminLoginProcess2.php" , true);
     r.send(f);
 }
+
+function goToUpadteProduct(id) {
+    window.location = "updateProduct.php?pId="+id;
+}
