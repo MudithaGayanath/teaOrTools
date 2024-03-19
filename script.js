@@ -1115,5 +1115,35 @@ function goToUpadteProduct(id) {
 }
 
 function updateProduct(id) {
-    alert(id);
+    var price = document.getElementById("price");
+    var status = document.getElementById("status");
+    var qty = document.getElementById("qty");
+    var inCity = document.getElementById("diuc");
+    var outCity = document.getElementById("dofuc");
+
+    var f = new FormData();
+    f.append("pId" , id);
+    f.append("status" , status.value);
+    f.append("qty" , qty.value);
+    f.append("inCity" , inCity.value);
+    f.append("outCity" , outCity.value);
+    f.append("price" , price.value);
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if( r.readyState == 4 && r.status == 200 ){
+            var text = r.responseText;
+            if ( text == "done"){
+                alert("Product Updated Succsessfully");
+                window.location = "myProducts.php";
+            }else {
+                alert(text);
+            }
+                
+            
+
+        }
+    }
+    r.open("POST","updateProductProcess.php" , true);
+    r.send(f);
 }
