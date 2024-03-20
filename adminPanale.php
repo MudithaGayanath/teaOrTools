@@ -55,7 +55,7 @@
         <div class="col-12 col-sm-4">Hello , <?php echo($_SESSION["a"]["fname"]." ".$_SESSION["a"]["lname"]); ?></div>
         <?php
             
-            $start_date = new DateTime("2023-12-15 19:00:00");
+            $start_date = new DateTime("2024-1-5 08:00:00");
 
             $tdate = new DateTime();
             $tz = new DateTimeZone("Asia/Colombo");
@@ -70,8 +70,28 @@
         </div>
     </div>
     <div class="row">
-        <h3>Proformance</h3>
-        <div id="curve_chart" class=" col-12"></div>
+    <div class="col-12 col-md-6 mt-2">
+      <div class="card">
+      <div class="card-header">
+        <h3>Semiannual Earnings</h3>
+      </div>
+      <div class="card-body bg-primary text-white">
+        <div id="curve_chart" ></div>
+      </div>
+    </div>
+    </div>
+
+    <div class="col-12 col-md-6 mt-2">
+      <div class="card">
+      <div class="card-header">
+        <h3>Category Activity</h3>
+      </div>
+      <div class="card-body bg-warning text-white">
+      <div id="piechart" class=" w-100" ></div>
+      </div>
+    </div>
+    </div>
+        
     </div>
 </div>
 
