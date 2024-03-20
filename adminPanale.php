@@ -74,9 +74,7 @@
         <div id="curve_chart" class=" col-12"></div>
     </div>
 </div>
-<script type="text/javascript">
-      
-    </script>
+
 <script src="bootstrap.bundle.js"></script>
 <script src="script.js"></script>
 </body>

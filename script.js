@@ -1152,20 +1152,39 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['Day', 'Sales', ],
-            ['2004',  1000,   ],
-            ['2005',  1170,      ],
-            ['2006',  660,       ],
-            ['2007',  1030,      ]
-        ]);
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if( r.readyState == 4 && r.status == 200 ){
+            var text = r.responseText;
+            var obj = JSON.parse(text);
+            var jan = obj["jan"];
+            var feb = obj["feb"];
+            var mar = obj["mar"];
+            var apr = obj["apr"];
+            var data = google.visualization.arrayToDataTable([
+                ['Day', 'Sales', ],
+                    ['Jan',  parseInt(jan) , ],
+                    ['feb',  parseInt(feb) , ],
+                    ['Mar',  parseInt(mar) , ],
+                    ['ap',  parseInt(apr) , ]
+                ]);
+                var options = {
+                    title: 'Monthly Sales',
+                    curveType: 'function',
+                    legend: { position: 'bottom' }
+                };
+            
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                chart.draw(data, options);    
+                
+            
 
-    var options = {
-        title: 'Monthly Sales',
-        curveType: 'function',
-        legend: { position: 'bottom' }
-    };
+        }
+    }
+    r.open("GET","MonthlySalesProcess.php" , true);
+    r.send();
 
-    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-    chart.draw(data, options);
+    
+
+    
 }
