@@ -1099,7 +1099,7 @@ function adminLogin() {
         if( r.readyState == 4 && r.status == 200 ){
             var text = r.responseText;
             if ( text == "done"){
-                window.location="index.php";
+                window.location="adminPanale.php";
             }else {
                 alert(text);
             }
@@ -1147,3 +1147,4 @@ function updateProduct(id) {
     r.open("POST","updateProductProcess.php" , true);
     r.send(f);
 }
+
