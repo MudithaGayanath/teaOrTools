@@ -1,3 +1,4 @@
+
 function register(){
     var fname = document.getElementById("fname");
     var lname = document.getElementById("lname");
@@ -1148,85 +1149,82 @@ function updateProduct(id) {
     r.send(f);
 }
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
-    var r = new XMLHttpRequest();
-    r.onreadystatechange = function(){
-        if( r.readyState == 4 && r.status == 200 ){
-            var text = r.responseText;
-            var obj = JSON.parse(text);
-            var jan = obj["jan"];
-            var feb = obj["feb"];
-            var mar = obj["mar"];
-            var apr = obj["apr"];
-            var may = obj["may"];
-            var june = obj["june"];
-            var data = google.visualization.arrayToDataTable([
-                ['Day', 'Sales', ],
-                    ['January',  parseInt(jan) , ],
-                    ['February',  parseInt(feb) , ],
-                    ['March',  parseInt(mar) , ],
-                    ['April',  parseInt(apr) , ],
-                    ['May',  parseInt(may) , ],
-                    ['June',  parseInt(june) , ]
-                    // ['July',  parseInt(apr) , ],
-                    // ['August',  parseInt(apr) , ],
-                    // ['September',  parseInt(apr) , ],
-                    // ['October',  parseInt(apr) , ],
-                    // ['November',  parseInt(apr) , ],
-                    // ['December',  parseInt(apr) , ]
-                ]);
-                var options = {
-                    curveType: 'function',
-                    legend: { position: 'bottom' }
-                };
-            
-                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-                chart.draw(data, options);    
-                
-            
-
-        }
-    }
-    r.open("GET","MonthlySalesProcess.php" , true);
-    r.send();
+   
  
-}
 
-google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawPie);
 
-      function drawPie() {
 
-        var r = new XMLHttpRequest();
-        r.onreadystatechange = function(){
-            if( r.readyState == 4 && r.status == 200 ){
-                var text = r.responseText;
-                var obj = JSON.parse(text);
-
-                var t = parseInt(obj["tea"]);
-                var f = parseInt(obj["f"]);
-                var m = parseInt(obj["m"]);
-                var data = google.visualization.arrayToDataTable([
-                    ['Task', 'Hours per Day'],
-                    ['Tea Plant', t],
-                    ['Tea Fertilizer',      f],
-                    ['Machine',  m]
-                  ]);
-          
-                  var options = {
-                  };
-          
-                  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-          
-                  chart.draw(data, options);
+    //     var r = new XMLHttpRequest();
+    //     r.onreadystatechange = function(){
+    //         if( r.readyState == 4 && r.status == 200 ){
+               
                 
-        }
-        }
-        r.open("GET","categoryProcess.php" , true);
-        r.send();
+    //     }
+    //     }
+    //     r.open("GET","categoryProcess.php" , true);
+    //     r.send();
 
         
-      }
+   // <block:setup:1>
+   const ctx = document.getElementById('myChart');
+   const MONTHS = [
+   'January',
+   'February',
+   'March',
+   'April',
+   'May',
+   'June',
+   'July',
+   'August',
+   'September',
+   'October',
+   'November',
+   'December'
+ ];
+ 
+ function months(config) {
+   var cfg = config || {};
+   var count = cfg.count || 12;
+   var section = cfg.section;
+   var values = [];
+   var i, value;
+ 
+   for (i = 0; i < count; ++i) {
+     value = MONTHS[Math.ceil(i) % 12];
+     values.push(value.substring(0, section));
+   }
+ 
+   return values;
+ }
+   const labels = months({count: 3});
+ 
+   var r = new XMLHttpRequest();
+   r.onreadystatechange = function(){
+       if( r.readyState == 4 && r.status == 200 ){
+          var rp = r.responseText;
+          var obj = JSON.parse(rp);
+          
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels ,
+              datasets: [{
+                label: 'income',
+                data: [obj["jan"],obj["feb"] , obj["mar"], ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                }
+              }
+            }
+          });
+       }
+   }
+   r.open("GET","MonthlySalesProcess.php" , true);
+   r.send();
+ 

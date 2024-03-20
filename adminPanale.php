@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin Panale | Tea or Tools</title>
 </head>
 <body>
@@ -71,17 +71,16 @@
     </div>
     <div class="row">
     <div class="col-12 col-md-6 mt-2">
-      <div class="card">
-      <div class="card-header">
-        <h3>Semiannual Earnings</h3>
+      <div class="card ">
+        <div class="card-body">
+          
+        <h5 class="card-title ">Income Activity</h5>
+        <canvas id="myChart" ></canvas>
+        </div>
       </div>
-      <div class="card-body bg-primary text-white">
-        <div id="curve_chart" ></div>
-      </div>
-    </div>
     </div>
 
-    <div class="col-12 col-md-6 mt-2">
+    <!-- <div class="col-12 col-md-6 mt-2">
       <div class="card">
       <div class="card-header">
         <h3>Category Activity</h3>
@@ -90,7 +89,7 @@
       <div id="piechart" class=" w-100" ></div>
       </div>
     </div>
-    </div>
+    </div> -->
         
     </div>
 </div>
