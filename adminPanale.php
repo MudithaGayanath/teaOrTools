@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Admin Panale | Tea or Tools</title>
 </head>
 <body>
@@ -70,8 +71,12 @@
     </div>
     <div class="row">
         <h3>Proformance</h3>
+        <div id="curve_chart" class=" col-12"></div>
     </div>
 </div>
+<script type="text/javascript">
+      
+    </script>
 <script src="bootstrap.bundle.js"></script>
 <script src="script.js"></script>
 </body>

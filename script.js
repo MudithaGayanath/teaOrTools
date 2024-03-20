@@ -1148,3 +1148,24 @@ function updateProduct(id) {
     r.send(f);
 }
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Day', 'Sales', ],
+            ['2004',  1000,   ],
+            ['2005',  1170,      ],
+            ['2006',  660,       ],
+            ['2007',  1030,      ]
+        ]);
+
+    var options = {
+        title: 'Monthly Sales',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    chart.draw(data, options);
+}
