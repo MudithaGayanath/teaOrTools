@@ -1167,64 +1167,145 @@ function updateProduct(id) {
 
         
    // <block:setup:1>
-   const ctx = document.getElementById('myChart');
    const MONTHS = [
-   'January',
-   'February',
-   'March',
-   'April',
-   'May',
-   'June',
-   'July',
-   'August',
-   'September',
-   'October',
-   'November',
-   'December'
- ];
- 
- function months(config) {
-   var cfg = config || {};
-   var count = cfg.count || 12;
-   var section = cfg.section;
-   var values = [];
-   var i, value;
- 
-   for (i = 0; i < count; ++i) {
-     value = MONTHS[Math.ceil(i) % 12];
-     values.push(value.substring(0, section));
-   }
- 
-   return values;
- }
-   const labels = months({count: 3});
- 
-   var r = new XMLHttpRequest();
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+function income(){
+    const ctx = document.getElementById('myChart');
+   
+  
+  function months(config) {
+    var cfg = config || {};
+    var count = cfg.count || 12;
+    var section = cfg.section;
+    var values = [];
+    var i, value;
+  
+    for (i = 0; i < count; ++i) {
+      value = MONTHS[Math.ceil(i) % 12];
+      values.push(value.substring(0, section));
+    }
+  
+    return values;
+  }
+    const labels = months({count: 3});
+  
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if( r.readyState == 4 && r.status == 200 ){
+           var rp = r.responseText;
+           var obj = JSON.parse(rp);
+           
+           new Chart(ctx, {
+             type: 'line',
+             data: {
+               labels: labels ,
+               datasets: [{
+                 label: 'income',
+                 data: [obj["jan"],obj["feb"] , obj["mar"], ],
+                 borderWidth: 1
+               }]
+             },
+             options: {
+               scales: {
+                 y: {
+                   beginAtZero: true,
+                 }
+               }
+             }
+           });
+        }
+    }
+    r.open("POST","MonthlySalesProcess.php" , true);
+    r.send();
+}
+var viwe = 0;
+function salesAlert(){
+    var newOrder = document.getElementById("newOrder");
+    var r = new XMLHttpRequest();
    r.onreadystatechange = function(){
        if( r.readyState == 4 && r.status == 200 ){
-          var rp = r.responseText;
-          var obj = JSON.parse(rp);
-          
-          new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: labels ,
-              datasets: [{
-                label: 'income',
-                data: [obj["jan"],obj["feb"] , obj["mar"], ],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                }
-              }
+            var text = r.responseText;
+            if ( text > 0) {
+                viwe = 1;
+                
+            newOrder.innerHTML = text;
+            newOrder.className = "position-absolute top-0 me-5 start-100 translate-middle badge rounded-pill bg-danger";
+            }else {
+                viwe = 0;
+            newOrder.className = "position-absolute top-0 me-5 start-100 translate-middle badge rounded-pill bg-danger d-none";
             }
-          });
+            
        }
-   }
-   r.open("GET","MonthlySalesProcess.php" , true);
-   r.send();
- 
+    }
+    r.open("POST","salesAlertProcess.php" , true);
+    r.send();
+}
+
+if ( viwe == 0 ){
+    setInterval(() => {
+        salesAlert();
+    }, 3000);
+}
+
+function sellerMonthlyIncome(){
+    const div = document.getElementById('myChart');
+    
+  
+  function months(config) {
+    var cfg = config || {};
+    var count = cfg.count || 12;
+    var section = cfg.section;
+    var values = [];
+    var i, value;
+  
+    for (i = 0; i < count; ++i) {
+      value = MONTHS[Math.ceil(i) % 12];
+      values.push(value.substring(0, section));
+    }
+  
+    return values;
+  }
+    const labels = months({count: 3});
+  
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if( r.readyState == 4 && r.status == 200 ){
+           var rp = r.responseText;
+           var obj = JSON.parse(rp);
+           
+           new Chart(div, {
+             type: 'line',
+             data: {
+               labels: labels ,
+               datasets: [{
+                 label: 'income',
+                 data: [obj["jan"],obj["feb"] , obj["mar"] ],
+                 borderWidth: 1
+               }]
+             },
+             options: {
+               scales: {
+                 y: {
+                   beginAtZero: true,
+                   responsive: true
+                 }
+               }
+             }
+           });
+        }
+    }
+    r.open("POST","sellerMonthlyIncomeProcess.php" , true);
+    r.send();
+}
