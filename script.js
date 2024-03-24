@@ -1277,13 +1277,16 @@ function sellerMonthlyIncome(){
   
     return values;
   }
-    const labels = months({count: 3});
+    
   
     var r = new XMLHttpRequest();
     r.onreadystatechange = function(){
         if( r.readyState == 4 && r.status == 200 ){
-           var rp = r.responseText;
-           var obj = JSON.parse(rp);
+           var text = r.responseText;
+           var obj = JSON.parse(text);
+            var length = Object.keys(obj).length;
+
+           const labels = months({count: length});
            
            new Chart(div, {
              type: 'line',
@@ -1291,7 +1294,7 @@ function sellerMonthlyIncome(){
                labels: labels ,
                datasets: [{
                  label: 'income',
-                 data: [obj["jan"],obj["feb"] , obj["mar"] ],
+                 data: [obj["jan"],obj["feb"] , obj["mar"],obj["apr"],obj["may"],obj["june"] ],
                  borderWidth: 1
                }]
              },
