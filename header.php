@@ -40,7 +40,7 @@ session_start();
           // if (isset($_SESSION["u"])){
             ?> -->
             <li class="nav-item position-relative">
-            <a class="nav-link " href="mySales.php" id="mp" >My Sellings</a>
+            <a class="nav-link " href="mySales.php" id="s" >My Sellings</a>
             <span class="position-absolute top-0 me-5 start-100 translate-middle badge rounded-pill bg-danger d-none" id="newOrder">
               <span class="visually-hidden">unread messages</span>
             </span>
@@ -59,7 +59,7 @@ session_start();
             <a class="nav-link" href="#" id="msg"></a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="#" id="hel" onclick="active(8);">Help</a>
+            <a class="nav-link" href="#" id="hel" >Help</a>
           </li>
           <li class="nav-item">
             <?php
