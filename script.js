@@ -512,6 +512,8 @@ function active(id){
         wish.className = ("nav-link  active");
     }else if ( id == 7 ){
         history.className = ("nav-link  active");
+    }else if ( id == 8 ){
+        selling.className = ("nav-link  active");
     }
 }
 
