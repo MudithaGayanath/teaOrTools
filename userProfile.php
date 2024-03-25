@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="bootstrap.css">
     <title>Profile | Tea or Tools</title>
 </head>
-<body onload="active(2);">
+<body onload="active(2);salesAlert();">
     <div class="container-fluid">
         <div class="row">
             <!-- img -->

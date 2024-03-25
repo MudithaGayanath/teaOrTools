@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="bootstrap.css" />
         <title>History | Tea or Tools</title>
     </head>
-    <body onload="active(7);">
+    <body onload="active(7);salesAlert();">
     <div class="container-fluid">
       <div class="row">
         <h1 class=" text-center">History</h1>

@@ -1,7 +1,8 @@
 <?php
     session_start();
     include("connection.php");
-    $months[0] =0;
+    if ( isset($_SESSION["u"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+        $months[0] =0;
          $months[1] =0;
          $months[2] =0;
          $months[3] =0;
@@ -73,15 +74,8 @@
          for ($x=0; $x < $thisMonth; $x++) { 
           $arry[$x] = $months[$x];
          }
-echo(json_encode($arry[]));
-          
- 
-         
-
-         
- 
-         
-         
-         
-         
+            echo(json_encode($arry));
+    }else {
+        header("location:index.php");
+    }
 ?>

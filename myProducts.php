@@ -12,7 +12,7 @@
             <link rel="stylesheet" href="bootstrap.css" />
             <title>My Products | Tea or Tools</title>
         </head>
-        <body onload="active(3);">
+        <body onload="active(3);salesAlert();">
             <div class="container-fluid">
                 <div class="row">
                     <h1 class=" text-center">My Products</h1>

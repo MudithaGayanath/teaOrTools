@@ -132,8 +132,8 @@
 
 
         <?php
-    Database::iud("INSERT INTO `invoice` (`product_id`,`cou_user_email`,`order_id`,`buy_qty`,`total`,`date_time`,`status_id`) VALUES 
-    ('".$pId."','".$customerEmail."','".$orderId."','".$qty."','".$tot."','".$date."','1')");    
+    Database::iud("INSERT INTO `invoice` (`product_id`,`cou_user_email`,`order_id`,`buy_qty`,`total`,`date_time`,`status_id`,`view_id`) VALUES 
+    ('".$pId."','".$customerEmail."','".$orderId."','".$qty."','".$tot."','".$date."','1','1')");    
     }else{
         header("location:login.php");
     }

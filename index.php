@@ -1,5 +1,6 @@
 <?php
     include("header.php");
+    include("connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +10,10 @@
     <link rel="stylesheet" href="bootstrap.css" />
     <title>Home | Tea or Tools</title>
 </head>
-<body onload="active(1);">
+<body onload="active(1);salesAlert();">
     <?php
         
-        include("connection.php");
+        // include("connection.php");
         $fName = "User";
         if ( isset($_SESSION["u"])) {
             $fName = $_SESSION["u"]["fname"];
@@ -69,7 +70,7 @@
                     $imgData = $imgRs -> fetch_assoc();
                     $path = $imgData["path"];
                     ?>
-                    <div class="col-11 offset-1 offset-sm-0  mb-2 col-sm-6 col-lg-4 col-xl-3 ms-5  ms-sm-0  " >
+                    <div class="col-11 offset-1 ps-5 ms-5 mt-2 mb-2 col-sm-6 offset-sm-0 ms-sm-0  col-lg-4 col-xl-3 ps-md-5 pt-0" >
                         <div class="card" style="width: 18rem;">
                             <img src="<?php echo($path);?>" class=" img-fluid" alt="..." style="width: 300px; height: 200px;" />
                             <div class="card-body">

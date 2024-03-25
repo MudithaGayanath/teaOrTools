@@ -12,7 +12,7 @@
             <link rel="stylesheet" href="bootstrap.css">
             <title>Wish List | Tea or Tools</title>
         </head>
-        <body onload="active(6);">
+        <body onload="active(6);salesAlert();">
             <div class="container-fluid">
             <div class="row text-center">
                     <h1>Wish List</h1>

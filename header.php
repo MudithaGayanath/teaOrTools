@@ -35,9 +35,17 @@ session_start();
           <li class="nav-item">
             <a class="nav-link" href="myProducts.php" id="mp" >My Products</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="ms" onclick="active(4);">My Sellings</a>
+
+        <!-- <?php
+          // if (isset($_SESSION["u"])){
+            ?> -->
+            <li class="nav-item position-relative">
+            <a class="nav-link " href="mySales.php" id="mp" >My Sellings</a>
+            <span class="position-absolute top-0 me-5 start-100 translate-middle badge rounded-pill bg-danger d-none" id="newOrder">
+              <span class="visually-hidden">unread messages</span>
+            </span>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="cart.php" id="c" onclick="active(5);">Cart</a>
           </li>

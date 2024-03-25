@@ -12,11 +12,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bootstrap.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin Panale | Tea or Tools</title>
 </head>
-<body onload="income();">
+<body>
 <nav class="navbar bg-body-tertiary navbar-expand-md  sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Tea or Tools </a>
@@ -70,7 +71,28 @@
         </div>
     </div>
     <div class="row">
-    <div class="col-12 col-md-6 mt-2">
+      <div class="col-12 col-md-6 col-xl-3 text-white border bg-primary rounded-3 text-center shadow ">
+        <!--  -->
+        <!--  -->
+        <h1 class="card-header lead fs-1">Total Users</h1>
+          <?php 
+            $totUsers = $userRs -> num_rows;
+          ?>
+        <h3><?php echo($totUsers);?></h3>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3 text-white  bg-secondary rounded-3 text-center shadow offset-xl-1">
+        <!--  -->
+        
+        <!--  -->
+        <h1 class="card-header">Total Product</h1>
+          <?php 
+            $productsRs = Database::search("SELECT * FROM `product`");
+            $totProduct = $productsRs -> num_rows;
+          ?>
+        <h3><?php echo($totProduct);?></h3>  
+      </div>
+      </div>
+    <div class="col-12 d-none">
       <div class="card ">
         <div class="card-body">
           

@@ -1,8 +1,8 @@
 <?php
     session_start();
-    if ( isset($_SESSION["a"])){
+    if ( isset($_SESSION["a"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
         include("connection.php");
-        $invoiceRs = Database::search("SELECT * FROM `invoice`");
+        $invoiceRs = Database::search("SELECT * FROM `invoice` WHERE `status_id`='2'");
         $tdate = new DateTime();
         $tz = new DateTimeZone("Asia/Colombo");
         $tdate->setTimezone($tz);
@@ -64,7 +64,10 @@
         $array["apr"] = $aprilTot; 
         $array["may"] = $mayTot; 
         $array["june"] = $juneTot; 
+        
         echo(json_encode($array));
+    }else {
+        header("location:index.php");
     }
     
 ?>

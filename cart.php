@@ -13,7 +13,7 @@
             <link rel="stylesheet" href="bootstrap.css" />
             <title>Cart | Tea or Tools</title>
         </head>
-        <body onload="active(5);">
+        <body onload="active(5);salesAlert();">
             <div class="container-fluid">
                 <div class="row text-center">
                     <h1>Cart</h1>

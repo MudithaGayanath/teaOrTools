@@ -4,7 +4,7 @@ include("header.php");
         if( isset($_GET["pid"])){
             $pid = $_GET["pid"];
             
-            include("connection.php");
+            // include("connection.php");
 
             $productRs = Database::search("SELECT * FROM `product` INNER JOIN `brand_has_categorie` ON 
             product.brand_has_categorie_id=brand_has_categorie.id INNER JOIN `categorie` ON
@@ -215,7 +215,8 @@ include("header.php");
                             <?php
                                 $relatedItemsRs = Database::search("SELECT * FROM `product` INNER JOIN `model_has_brand` ON
                                 product.model_has_brand_id=model_has_brand.id INNER JOIN `brand` ON
-                                model_has_brand.brand_brand_id=brand.brand_id WHERE `brand_brand_id`='".$productData["brand_id"]."'AND `brand_id` != '8' AND `product_id`!='".$productData["product_id"]."'");
+                                model_has_brand.brand_brand_id=brand.brand_id INNER JOIN `condition` ON
+                                product.condition_condition_id=condition.condition_id WHERE `brand_brand_id`='".$productData["brand_id"]."'AND `brand_id` != '8' AND `product_id`!='".$productData["product_id"]."'");
 
                                 
                                 if ($relatedItemsRs -> num_rows > 0 ){
@@ -231,7 +232,7 @@ include("header.php");
                                                 <div class="card" style="width: 18rem;">
                                                     <img src="<?php echo($path);?>" class=" img-fluid" alt="..." style="width: 300px; height: 200px;" />
                                                     <div class="card-body">
-                                                        <h4><?php echo($relatedItemsData["title"]);?></h4>
+                                                        <h4><?php echo($relatedItemsData["title"] );?></h4>
                                                         <span class="badge <?php if ($relatedItemsData["condition_id"] == 1 ){
                                                             ?>text-bg-primary<?php
                                                             }else{

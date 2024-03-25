@@ -1285,6 +1285,7 @@ function sellerMonthlyIncome(){
            var text = r.responseText;
            var obj = JSON.parse(text);
             var length = Object.keys(obj).length;
+            
 
            const labels = months({count: length});
            
@@ -1294,7 +1295,7 @@ function sellerMonthlyIncome(){
                labels: labels ,
                datasets: [{
                  label: 'income',
-                 data: [obj["jan"],obj["feb"] , obj["mar"],obj["apr"],obj["may"],obj["june"] ],
+                 data: [obj[0],obj[1] , obj[2],obj[3],obj[4],obj[5],obj[6],obj[7],obj[8],obj[9],obj[10],obj[11],obj[12] ],
                  borderWidth: 1
                }]
              },
