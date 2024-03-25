@@ -1,8 +1,9 @@
 <?php
     include("header.php");
-    
+    include("connection.php");
 
     if ( isset($_SESSION["u"])){
+        $email = $_SESSION["u"]["email"];
         ?>
         <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,19 @@
         <div class="card bg-primary text-white" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Total Income</h5>
-                <p class="card-text">RS. 30,000.00</p>
+                <?php
+                    $incomeRs = Database::search("SELECT * FROM `invoice` INNER JOIN `product` ON
+                    invoice.product_id=product.product_id  WHERE `user_email`='".$email."'");
+                    $totIncome = 0;
+                    $solledItems = 0;
+                    for ($i=0; $i < $incomeRs -> num_rows; $i++) { 
+                        $incomeData = $incomeRs -> fetch_assoc();
+                        $totIncome = $totIncome + $incomeData["total"];
+                        $solledItems = $solledItems + $incomeData["buy_qty"];
+                    }
+                    
+                ?>
+                <p class="card-text">RS. <?php echo($totIncome);?>.00</p>
                 
             </div>
         </div>
@@ -31,7 +44,8 @@
         <div class="card bg-secondary text-white" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Total Sellings</h5>
-                <p class="card-text">100 Items soled</p>
+               
+                <p class="card-text"><?php echo($solledItems);?> Items solled</p>
                 
             </div>
         </div>
@@ -41,7 +55,15 @@
         <div class="card bg-success text-white" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Available Items</h5>
-                <p class="card-text">100 Items soled</p>
+                <?php 
+                    $avaitableProductRs = Database::search("SELECT * FROM `product` WHERE `user_email`='".$email."' AND `status_status_id`='1' ");
+                    $avaitableProduct= 0;
+                    for ($i=0; $i < $avaitableProductRs -> num_rows; $i++) { 
+                        $avaitableProductData = $avaitableProductRs -> fetch_assoc();
+                        $avaitableProduct = $avaitableProduct + $avaitableProductData["qty"];
+                    }
+                ?>
+                <p class="card-text"> <?php echo($avaitableProduct);?> Items </p>
                 
             </div>
         </div>
@@ -58,7 +80,7 @@
         </div>
         </div>
 
-        <h1 class=" text-center">Monthly Income</h1>
+        <h1 >Monthly Income</h1>
         <div class="row">
             <div class="col-12 col-lg-6  ">
             <canvas id="myChart" ></canvas>
