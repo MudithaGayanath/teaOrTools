@@ -4,7 +4,7 @@ include("header.php");
         if( isset($_GET["pid"])){
             $pid = $_GET["pid"];
             
-            // include("connection.php");
+            include("connection.php");
 
             $productRs = Database::search("SELECT * FROM `product` INNER JOIN `brand_has_categorie` ON 
             product.brand_has_categorie_id=brand_has_categorie.id INNER JOIN `categorie` ON

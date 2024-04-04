@@ -1,87 +1,61 @@
-<?php
-    session_start();
-    include("connection.php");
-    $months[0] =0;
-         $months[1] =0;
-         $months[2] =0;
-         $months[3] =0;
-         $months[4] =0;
-         $months[5] =0;
-         $months[6] =0;
-         $months[7] =0;
-         $months[8] =0;
-         $months[9] =0;
-         $months[10] =0;
-         $months[11] =0;
-        $email = $_SESSION["u"]["email"];
-        $sellsRs = Database::search("SELECT * FROM `invoice`  INNER JOIN `product` ON
-        invoice.product_id=product.product_id  WHERE `user_email`='".$email."'");
-         $tdate = new DateTime();
-         $tz = new DateTimeZone("Asia/Colombo");
-         $tdate->setTimezone($tz);
-         $day = $tdate->format("Y-m-d H:i:s") ;
- 
-         $sliptMonth = explode("-",$day);
-         $thisMonth = $sliptMonth["1"];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-         for ($i=0; $i < $sellsRs -> num_rows; $i++) { 
-            $invoiceData = $sellsRs -> fetch_assoc();
-            $sellDate = $invoiceData["date_time"];
-            $sliptSellDate = explode("-",$sellDate);
-            $sellMonth = $sliptSellDate["1"];
-
-            if ( $sellMonth == 1){
-              $months[0] = $months[0] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 2){
-              $months[1] = $months[1] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 3){
-              $months[2] = $months[2] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 4){
-              $months[3] = $months[0] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 5){
-              $months[4] = $months[4] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 6){
-              $months[5] = $months[5] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 7){
-              $months[6] = $months[6] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 8){
-              $months[7] = $months[7] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 9){
-              $months[8] = $months[8] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 10){
-              $months[9] = $months[9] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 11){
-              $months[10] = $months[10] + $invoiceData["total"];
-            }
-            else if ( $sellMonth == 12){
-              $months[11] = $months[11] + $invoiceData["total"];
-            }
-
-           
-            
-         }
-         for ($x=0; $x < $thisMonth; $x++) { 
-          $arry[$x] = $months[$x];
-         }
-echo(json_encode($arry[]));
-          
- 
-         
-
-         
- 
-         
-         
-         
-         
-?>
+  <title>Document</title>
+</head>
+<body>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+  <script>
+    const ctx = document.getElementById('myChart');
+    const data = {
+  labels: [
+    'Red',
+    'Green',
+    'Yellow',
+    'Grey',
+    'Blue'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [11, 16, 7, 3, 14],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(75, 192, 192)',
+      'rgb(255, 205, 86)',
+      'rgb(201, 203, 207)',
+      'rgb(54, 162, 235)'
+    ]
+  }]
+};
+const config = {
+  type: 'polarArea',
+  data: data,
+  options: {}
+};
+new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  </script>
+</body>
+</html>
