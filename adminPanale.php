@@ -42,6 +42,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">History</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="adminLogout();">LogOut</a>
+          </li>
           
         </ul>
        
@@ -55,7 +58,7 @@
         <div class="col-12 col-sm-4">Hello , <?php echo($_SESSION["a"]["fname"]." ".$_SESSION["a"]["lname"]); ?></div>
         <?php
             
-            $start_date = new DateTime("2024-1-5 08:00:00");
+            $start_date = new DateTime("2024-2-22 08:00:00");
 
             $tdate = new DateTime();
             $tz = new DateTimeZone("Asia/Colombo");

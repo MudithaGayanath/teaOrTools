@@ -1315,3 +1315,18 @@ function sellerMonthlyIncome(){
     r.open("POST","sellerMonthlyIncomeProcess.php" , true);
     r.send();
 }
+
+function adminLogout(){
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if ( r.readyState == 4 && r.status == 200 ){
+            var text = r.responseText;
+            if ( text == "done"){
+                alert("LogOut Successfully");
+                window.location = "index.php";
+            }
+        }
+    }
+    r.open("POST" , "adninLogoutProcess.php" , true );
+    r.send();
+}
