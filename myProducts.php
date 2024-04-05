@@ -64,7 +64,14 @@
                                             <h4 class="m-0"><?php echo($proData["title"]);?></h4>
                                             <p class=" m-0">Rs.<?php echo($proData["price"]);?>.00</p>
                                             <p class=" m-0">QTY - <?php echo($proData["qty"]);?></p>
-                                            <p class=" text-info fw-bold m-0">Active</p>
+                                            <?php
+                                                if ( $proData["status_status_id"] == 1 ){
+                                                    ?> <p class=" text-info fw-bold m-0">Active</p><?php
+                                                }else if ( $proData["status_status_id"] == 2 ) {
+                                                    ?> <p class=" text-danger fw-bold m-0">Inactive</p><?php
+                                                }
+                                            ?>
+                                           
                                             <button class="btn btn-success col-5" onclick="goToUpadteProduct(<?php echo($proData['product_id']);?>);">Update</button>
                                         </div>
                                         </div>

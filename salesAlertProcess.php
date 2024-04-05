@@ -8,6 +8,6 @@
         $count = $sellrProductRs -> num_rows;
         echo($count);
     }else {
-
+        header("location:index.php");
     }
 ?>

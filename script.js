@@ -1330,3 +1330,22 @@ function adminLogout(){
     r.open("POST" , "adninLogoutProcess.php" , true );
     r.send();
 }
+
+function unviewToViwe( inId ) {
+    var f = new FormData();
+    f.append("inId" , inId );
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if ( r.readyState == 4 && r.status == 200 ) {
+            var text = r.responseText;
+            if ( text == "done" ){
+                window.location.reload();
+            }else {
+                alert("Something Went Wrong");
+            }
+        }
+    }
+    r.open("POST" , "unviewToViweProcess.php" , true );
+    r.send( f );
+}
