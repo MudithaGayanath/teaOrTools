@@ -123,7 +123,7 @@
                             <?php
                         }else {
                             ?>
-                            <tr class=" ">
+                            <tr class=" " onclick="goToSoldProduct(<?php echo($ProductData['invoice_id']) ?>);">
                             <td><?php echo($ProductData["order_id"]); ?></td>
                             <td><?php echo($ProductData["title"]); ?></td>
                             <td><?php echo($ProductData["date_time"]); ?></td>
@@ -143,7 +143,7 @@
                                     <?php
                                 }else if ($ProductData["status_id"] == 4) {
                                     ?>
-                                    <button class=" btn btn-danger col-12 col-lg-6"><?php echo($ProductData["status_name"]); ?></button>
+                                    <button class=" btn btn-danger col-12 col-lg-6"><?php echo($ProductData["status_name"]); ?></button></td>
                                     <?php
                                 }
                                 ?>    

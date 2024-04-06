@@ -20,7 +20,7 @@
       <?php
         $invoiceRs = Database::search("SELECT * FROM `invoice` INNER JOIN `product` ON 
         invoice.product_id=product.product_id INNER JOIN `order_status` ON
-        invoice.status_id=order_status.order_status_id WHERE `cou_user_email`='".$email."'");
+        invoice.status_id=order_status.order_status_id WHERE `cou_user_email`='".$email."' ");
         if ( $invoiceRs -> num_rows == 0){
           ?>
           <div class="col-12 text-center">
@@ -66,7 +66,26 @@
                     <?php
                 }else {
                     ?>
-                    <td><button type="button" class="btn btn-success "><?php echo($inData["status_name"]);?> </button></td>
+                    <td>
+                                <?php
+                                if ($inData["status_id"] == 1) {
+                                    ?>
+                                    <button class=" btn btn-primary col-12 col-lg-6"><?php echo($inData["status_name"]); ?></button>
+                                    <?php
+                                }else if ($inData["status_id"] == 2) {
+                                    ?>
+                                    <button class=" btn btn-success col-12 col-lg-6"><?php echo($inData["status_name"]); ?></button>
+                                    <?php
+                                }else if ($inData["status_id"] == 3) {
+                                    ?>
+                                    <button class=" btn btn-warning col-12 col-lg-6"><?php echo($inData["status_name"]); ?></button>
+                                    <?php
+                                }else if ($inData["status_id"] == 4) {
+                                    ?>
+                                    <button class=" btn btn-danger col-12 col-lg-6"><?php echo($inData["status_name"]); ?></button></td>
+                                    <?php
+                                }
+                                ?> 
                     <td>
               <button type="button" class="btn btn-secondary" onmouseover="viewMore();" id="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click Here To Add Your Review">
                 View

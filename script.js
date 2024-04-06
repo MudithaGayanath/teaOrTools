@@ -1353,3 +1353,29 @@ function unviewToViwe( inId ) {
 function goToSoldProduct( inId ) {
     window.location = "soldProductView.php?inId="+inId;
 }
+
+function changeOrderStatus( id ) {
+    var select = document.getElementById("orderStatus");
+
+    select.onchange = function(){
+        var f = new FormData();
+        f.append("inId" , id );
+        f.append("sValue" , select.value);
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function() {
+            if ( r.readyState == 4 && r.status == 200 ){
+                var text = r.responseText;
+                if ( text == "done" ){
+                    alert("Order Status Updated");
+                    window.location.reload();
+                }else {
+                    alert(text);
+                    window.location.reload();
+                }
+            }
+        }
+        r.open("POST" , "changeOrderStatusProcess.php" , true );
+        r.send( f );
+    }
+    
+}

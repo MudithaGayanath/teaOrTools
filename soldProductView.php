@@ -33,11 +33,11 @@
                         </h3>
                        
                     </div>
-                    <div class="col-12 col-md-6  mb-2">
+                    <div class="col-12 col-md-6  mb-2 mt-0">
                         <div class="row   ">
-                        <div class="col-6 offset-6 border border-info ">
+                        <div class="col-12 col-md-6 offset-md-6 border border-info  mt-0">
                         <h4>Order Staus</h4>
-                        <button class=" form-control mb-2 btn <?php if ( $invoiceData["order_status_id"] == 1 ){
+                        <button class=" form-control mb-2 mt-0 btn <?php if ( $invoiceData["order_status_id"] == 1 ){
                             ?>btn-primary<?php
                         }else if ( $invoiceData["order_status_id"] == 2) {
                             ?>btn-success<?php
@@ -118,10 +118,8 @@
                         <h4>Change Order Status</h4>
                     </div>
                     
-                        
-                    
-                    <div class="col-6 offset-3 mb-3">
-                        <select  id="orderStatus" class=" form-control">
+                    <div class="col-6 offset-3 mb-3" >
+                        <select  id="orderStatus" class=" form-select" onclick="changeOrderStatus(<?php echo($invoiceId);?>)">
                             <option value="0">Select</option>
                             <?php
                                 $orderStatusRs = Database::search("SELECT * FROM `order_status`");
