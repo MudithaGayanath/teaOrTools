@@ -1340,7 +1340,7 @@ function unviewToViwe( inId ) {
         if ( r.readyState == 4 && r.status == 200 ) {
             var text = r.responseText;
             if ( text == "done" ){
-                window.location.reload();
+                goToSoldProduct(inId);
             }else {
                 alert("Something Went Wrong");
             }
@@ -1348,4 +1348,8 @@ function unviewToViwe( inId ) {
     }
     r.open("POST" , "unviewToViweProcess.php" , true );
     r.send( f );
+}
+
+function goToSoldProduct( inId ) {
+    window.location = "soldProductView.php?inId="+inId;
 }
