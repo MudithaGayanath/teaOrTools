@@ -1,4 +1,3 @@
-
 function register(){
     var fname = document.getElementById("fname");
     var lname = document.getElementById("lname");
@@ -26,8 +25,7 @@ function register(){
                 window.location = "login.php";
             }else {
                 alert(text); 
-            }
-            
+            } 
         }
     }
     r.open( "POST" , "registrationProcess.php" , true );
@@ -49,7 +47,6 @@ function login() {
         if ( r.readyState == 4 && r.status == 200 ) {
             var text = r.responseText;
             if ( text == "done") {
-                
                 window.location = "index.php";
             }else {
                 alert(text);
@@ -136,7 +133,7 @@ function dtoc() {
             }
         }
         r.open( "GET" , "dicToCity.php?disId="+distric.value , true );
-        r.send(  );
+        r.send();
     }
 }
 
@@ -191,11 +188,9 @@ function updateProfileImg() {
                 } else {
                     alert(response);
                     window.location.reload();
-                    
                 }
             }
         };
-
         request.open("POST", "validImgProcess.php", true);
         request.send(form);
     };
@@ -333,7 +328,6 @@ function changeModel() {
                 }else {
                     model.innerHTML = text;
                 }
-                
             }
         }
         r.open("POST","changeModel.php",true);
@@ -439,7 +433,6 @@ function addProduct() {
             }else {
                 alert(text);
             }
-            
         }
     }
     request.open("POST", "addProductProcess.php", true);
@@ -523,7 +516,6 @@ function logOut() {
         if (r.status == 200 && r.readyState == 4) {
             var text = r.responseText;
             if ( text == "done") {
-                
                 window.location = "index.php";
             }else {
                 alert(text);
@@ -549,9 +541,8 @@ function postalcode() {
         r.open("GET", "postalCodeProcess.php?cId="+city.value, true);
         r.send();
     }
-
-   
 }
+
 function postalcode2() {
     var pc = document.getElementById("pCode");
     var city = document.getElementById("city");
@@ -582,9 +573,8 @@ function wish(id){
             window.location.reload();
         }else if (text == "l"){
             window.location = "login.php";
+        }        
         }
-                
-    }
     }
     r.open("GET", "wishListProcess.php?pId="+id, true);
     r.send(); 
@@ -624,22 +614,17 @@ function addToCartFormIndex() {
             else {
                 alert("Please Login");
                 window.location = "login.php";
-            }
-            
-              
+            } 
         }
         }
         r.open("GET", "addToCartProcess.php?pId="+cid+"&qty="+cartQty.value, true);
         r.send(); 
-    
 }
 
 function addToCart(pid) {
     var cartQty  = document.getElementById("qty");
-    
-    
-        var r = new XMLHttpRequest();
-        r.onreadystatechange = function () {
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
             var text = r.responseText;   
             if ( text == "Added To Cart"){
@@ -661,19 +646,16 @@ function addToCart(pid) {
                 alert(text);
             }
             else if ( text == "log" ) {
-                
                 window.location = "login.php";
             }else {
                 alert(text);
                 window.location.reload();
             }
             
-              
         }
         }
         r.open("GET", "addToCartProcess.php?pId="+pid+"&qty="+cartQty.value, true);
-        r.send(); 
-    
+        r.send();
 }
 
 function removeFromCart(id){
@@ -708,27 +690,6 @@ function singalProudctTotal(price , items){
     f.append("qty" , qty.value);
     f.append("price" , price);
     f.append("item" , items);
-
-    // qty.onchange = function(){
-    //     var r = new XMLHttpRequest();
-    //     r.onreadystatechange = function () {
-    //         if (r.status == 200 && r.readyState == 4) {
-    //             var text = r.responseText;
-    //             if ( text == "get") {
-    //                 window.location = "index.php";
-    //             }
-    //             else if( text == "invalid") {
-    //                 alert("Invalid QTY");
-    //                 window.location.reload();
-    //             }
-    //             else{
-    //                 tot.value = text+".00";
-    //             }
-    //         }
-    //     }
-    //     r.open("POST", "singalProductTotalProcess.php", true);
-    //     r.send(f);
-    // }
 
     var r = new XMLHttpRequest();
         r.onreadystatechange = function () {
@@ -774,34 +735,26 @@ function buyNow(id){
                 var text = r.responseText;
                 
                 if( text == "log") {
-                  
                     alert("Please Login");
                     window.location = "login.php";
                 }
                 else if ( text == "iqty") {
-                    
                     alert("Invalid QTY");
                     qty.value = 1;
                 }
                 else if ( text == "address"){
-                   
                     alert("Add Your Addrss");
                     window.location = "userProfile.php";
                 }
                 else if ( text == "noQt"){
-                  
                     alert("Please Enter QTY");
                 }
                 else if ( text == "worng" ){
-                    
                     alert("Something Went Worng");
                     window.location = "index.php";
                 } 
                 else if ( text == "self"){
-                   
                     alert("Self Items Can't Buy");
-                    
-                    
                 }
                 else if ( text == "over" ){
                     alert("Over Limit");
@@ -812,9 +765,6 @@ function buyNow(id){
                     var amount = obj["total"];
                     var email = obj["email"];
                     var orderId = obj["orderId"];
-                    
-                     
-                    
                     
                     // Payment completed. It can be a successful failure.
                     payhere.onCompleted = function onCompleted(orderId) {
@@ -876,8 +826,6 @@ function buyNow(id){
         }
         r.open("POST", "buyNowProcess.php", true);
         r.send(f);
-       
-        
 }
 
 function updateQty(id,qty){
@@ -888,7 +836,6 @@ function updateQty(id,qty){
     r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
             var text = r.responseText;
-           
         }
     }
     r.open("POST", "updateQtyProcess.php", true);
@@ -896,21 +843,6 @@ function updateQty(id,qty){
 }
 
 function invoice(orderId,pid,qty,total,deleveryFee){
-    // var f = new FormData();
-    // f.append("orderId" , orderId);
-    // f.append("pId" , pid);
-    // f.append("qty" , qty);
-    // f.append("tot" , total);
-    // f.append("fee" , deleveryFee);
-    // var r = new XMLHttpRequest();
-    // r.onreadystatechange = function () {
-    //     if (r.status == 200 && r.readyState == 4) {
-    //         var text = r.responseText;
-           
-    //     }
-    // }
-    // r.open("POST", "invoice.php", true);
-    // r.send(f);
     window.location = "invoice.php?orderId="+orderId+"&pId="+pid+"&qty="+qty+"&tot="+total+"&fee="+deleveryFee;
 }
 
@@ -925,24 +857,7 @@ function printInvoice(){
     window.print();
     document.body.innerHTML = restor;
     btn.classList.toggle("d-none");
-    
 }
-
-
-
-// function feedback(){
-//     var document
-//     var r = new XMLHttpRequest();
-//     r.onreadystatechange = function () {
-//         if (r.status == 200 && r.readyState == 4) {
-//             var text = r.responseText;
-//            alert(text);
-//         }
-//     }
-//     r.open("POST", "updateQtyProcess.php", true);
-//     r.send(f);
-// }
-
 
 var newpM;
 function forget() {
@@ -1012,13 +927,10 @@ function changeMenu(){
                     main.className = "row mt-2 justify-content-center text-center  ";
                     searchRs.className = "row mt-2 justify-content-center text-center d-none";
                 }else {
-                    
                     main.className = "row mt-2 justify-content-center text-center d-none";
                     searchRs.innerHTML = text;
                     searchRs.className = "row mt-2 justify-content-center text-center";
                 }
-                
-
             }
         }
         r.open("POST" , "ChangeMune.php" , true );
@@ -1047,19 +959,16 @@ function searchText() {
                 searchRs.innerHTML = text;
                 searchRs.className = "row mt-2 justify-content-center text-center";
             }
-           
-         }
+        }
     }
     r.open("POST" , "homeSearchProcess.php" , true );
     r.send(f);
 }
 
-
 function viewMore(){
     var too = document.getElementById("tooltip");
     var tooltip = new bootstrap.Tooltip(too);
     tooltip.show();
-    
 }
 
 function goToAdminLogin(){
@@ -1084,14 +993,12 @@ function adminLoginModel() {
             }else {
                 alert(text);
             }
-
         }
     }
     r.open("POST","adminLoginProcess1.php" , true);
     r.send(f);
-
-   
 }
+
 function adminLogin() {
     var vCode = document.getElementById("adminVericode");
     var f = new FormData();
@@ -1106,7 +1013,6 @@ function adminLogin() {
             }else {
                 alert(text);
             }
-
         }
     }
     r.open("POST","adminLoginProcess2.php" , true);
@@ -1142,33 +1048,12 @@ function updateProduct(id) {
             }else {
                 alert(text);
             }
-                
-            
-
         }
     }
     r.open("POST","updateProductProcess.php" , true);
     r.send(f);
 }
 
-
-   
- 
-
-
-
-    //     var r = new XMLHttpRequest();
-    //     r.onreadystatechange = function(){
-    //         if( r.readyState == 4 && r.status == 200 ){
-               
-                
-    //     }
-    //     }
-    //     r.open("GET","categoryProcess.php" , true);
-    //     r.send();
-
-        
-   // <block:setup:1>
    const MONTHS = [
     'January',
     'February',
@@ -1185,54 +1070,52 @@ function updateProduct(id) {
   ];
 function income(){
     const ctx = document.getElementById('myChart');
-   
-  
-  function months(config) {
-    var cfg = config || {};
-    var count = cfg.count || 12;
-    var section = cfg.section;
-    var values = [];
-    var i, value;
-  
-    for (i = 0; i < count; ++i) {
-      value = MONTHS[Math.ceil(i) % 12];
-      values.push(value.substring(0, section));
-    }
-  
-    return values;
-  }
-    const labels = months({count: 3});
-  
-    var r = new XMLHttpRequest();
-    r.onreadystatechange = function(){
-        if( r.readyState == 4 && r.status == 200 ){
-            var text = r.responseText;
-            var obj = JSON.parse(text);
-             var length = Object.keys(obj).length;
-             const labels = months({count: length});
-           
-           new Chart(ctx, {
-             type: 'line',
-             data: {
-               labels: labels ,
-               datasets: [{
-                 label: 'income',
-                 data: [obj[0],obj[1] , obj[2],obj[3],obj[4],obj[5],obj[6],obj[7],obj[8],obj[9],obj[10],obj[11],obj[12] ],
-                 borderWidth: 1
-               }]
-             },
-             options: {
-               scales: {
-                 y: {
-                   beginAtZero: true,
-                 }
-               }
-             }
-           });
+
+    function months(config) {
+        var cfg = config || {};
+        var count = cfg.count || 12;
+        var section = cfg.section;
+        var values = [];
+        var i, value;
+    
+        for (i = 0; i < count; ++i) {
+        value = MONTHS[Math.ceil(i) % 12];
+        values.push(value.substring(0, section));
         }
+        return values;
     }
-    r.open("POST","MonthlySalesProcess.php" , true);
-    r.send();
+        const labels = months({count: 3});
+    
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function(){
+            if( r.readyState == 4 && r.status == 200 ){
+                var text = r.responseText;
+                var obj = JSON.parse(text);
+                var length = Object.keys(obj).length;
+                const labels = months({count: length});
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                labels: labels ,
+                datasets: [{
+                    label: 'income',
+                    data: [obj[0],obj[1] , obj[2],obj[3],obj[4],obj[5],obj[6],obj[7],obj[8],obj[9],obj[10],obj[11],obj[12] ],
+                    borderWidth: 1
+                }]
+                },
+                options: {
+                scales: {
+                    y: {
+                    beginAtZero: true,
+                    }
+                }
+                }
+            });
+            }
+        }
+        r.open("POST","MonthlySalesProcess.php" , true);
+        r.send();
 }
 var viwe = 0;
 function salesAlert(){
@@ -1246,10 +1129,11 @@ function salesAlert(){
                 
             newOrder.innerHTML = text;
             newOrder.className = "position-absolute top-0 me-5 start-100 translate-middle badge rounded-pill bg-danger";
-            }else {
-                viwe = 0;
-            newOrder.className = "position-absolute top-0 me-5 start-100 translate-middle badge rounded-pill bg-danger d-none";
             }
+            // }else {
+            //     viwe = 0;
+            // newOrder.className = "position-absolute top-0 me-5 start-100 translate-middle badge rounded-pill bg-danger d-none";
+            // }
             
        }
     }
@@ -1265,8 +1149,7 @@ if ( viwe == 0 ){
 
 function sellerMonthlyIncome(){
     const div = document.getElementById('myChart');
-    
-  
+
   function months(config) {
     var cfg = config || {};
     var count = cfg.count || 12;
@@ -1278,20 +1161,16 @@ function sellerMonthlyIncome(){
       value = MONTHS[Math.ceil(i) % 12];
       values.push(value.substring(0, section));
     }
-  
     return values;
   }
     
-  
     var r = new XMLHttpRequest();
     r.onreadystatechange = function(){
         if( r.readyState == 4 && r.status == 200 ){
-           var text = r.responseText;
-           var obj = JSON.parse(text);
+            var text = r.responseText;
+            var obj = JSON.parse(text);
             var length = Object.keys(obj).length;
-            
-
-           const labels = months({count: length});
+            const labels = months({count: length});
            
            new Chart(div, {
              type: 'line',
@@ -1304,13 +1183,12 @@ function sellerMonthlyIncome(){
                }]
              },
              options: {
-               scales: {
-                 y: {
-                   beginAtZero: true,
-                   responsive: true
-                 }
-               }
-             }
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
            });
         }
     }
@@ -1369,15 +1247,51 @@ function changeOrderStatus( id ) {
                 var text = r.responseText;
                 if ( text == "done" ){
                     alert("Order Status Updated");
-                    window.location.reload();
                 }else {
                     alert(text);
-                    window.location.reload();
                 }
+                window.location.reload();
             }
         }
         r.open("POST" , "changeOrderStatusProcess.php" , true );
         r.send( f );
-    }
+    }   
+}
+
+ 
+function sold(){
+    const div2 = document.getElementById('myChart2');
+    var r2 = new XMLHttpRequest();
     
+    r2.onreadystatechange = function(){
+        if ( r2.readyState == 4 && r2.status == 200 ) {
+            var text2 = r2.responseText;
+            var obg2 = JSON.parse(text2);
+            new Chart(div2, {
+                type: 'bar',
+                data: {
+                  labels: ['Tea Plant', 'Tea Fertilizer', 'Machine'],
+                  datasets: [{
+                    label: "",
+                    data: [obg2[0], obg2[1], obg2[2]],
+                    backgroundColor: [
+                        'rgba(144,238,144)',
+                        'rgba(196, 164, 132)',
+                        'rgba(178,190,181)'
+                      ],
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+        }
+    }
+    r2.open("POST" , "mostSoldCatProcess.php" , true );
+    r2.send();
 }
