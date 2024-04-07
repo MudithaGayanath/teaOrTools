@@ -72,6 +72,43 @@
        <h5> Active Time : <?php echo($difference -> format('%Y')."Years ".$difference -> format('%m')."Months ".$difference -> format('%d')."Days");?></h5>
         </div>
     </div>
+
+    <!-- box start -->
+    <div class="row">
+      <!-- totIncome -->
+      <div class="col-11 offset-1 mt-3 ps-5 col-sm-6 offset-sm-0 col-xl-3 ps-md-5 ps-lg-4 ps-sm-1">
+        <div class="card bg-primary text-white" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Total Income</h5>
+            <?php
+              $incomeRs = Database::search("SELECT * FROM `invoice`");
+              $totIncome = 0;
+              $solledItems = 0;
+              for ($i=0; $i < $incomeRs -> num_rows; $i++) { 
+                  $incomeData = $incomeRs -> fetch_assoc();
+                  $totIncome = $totIncome + $incomeData["total"];
+                  $solledItems = $solledItems + $incomeData["buy_qty"];
+              }
+                    
+          ?>
+          <p class="card-text">RS. <?php echo($totIncome);?>.00</p>
+                
+            </div>
+        </div>
+      </div>
+              <!-- totSold -->
+      <div class="col-11 offset-1 mt-3 ps-5 col-sm-6 offset-sm-0 col-xl-3 ps-md-5 ps-lg-4 ps-sm-1">
+        <div class="card bg-success text-white" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Total Salles</h5>
+           
+          <p class="card-text"> <?php echo($solledItems);?> Items</p>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- box end -->
     <div class="row">
     <div class="col-12 col-md-6 mt-2">
       <div class="card ">

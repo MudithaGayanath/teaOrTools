@@ -1,71 +1,80 @@
 <?php
     session_start();
+    include("connection.php");
     if ( isset($_SESSION["a"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
-        include("connection.php");
-        $invoiceRs = Database::search("SELECT * FROM `invoice` WHERE `status_id`='2'");
+        $months[0] =0;
+        $months[1] =0;
+        $months[2] =0;
+        $months[3] =0;
+        $months[4] =0;
+        $months[5] =0;
+        $months[6] =0;
+        $months[7] =0;
+        $months[8] =0;
+        $months[9] =0;
+        $months[10] =0;
+        $months[11] =0;
+      
+       $sellsRs = Database::search("SELECT * FROM `invoice`");
         $tdate = new DateTime();
         $tz = new DateTimeZone("Asia/Colombo");
         $tdate->setTimezone($tz);
         $day = $tdate->format("Y-m-d H:i:s") ;
 
         $sliptMonth = explode("-",$day);
+        $thisMonth = $sliptMonth["1"];
 
-        
-        $tot = "0";
+        for ($i=0; $i < $sellsRs -> num_rows; $i++) { 
+           $invoiceData = $sellsRs -> fetch_assoc();
+           $sellDate = $invoiceData["date_time"];
+           $sliptSellDate = explode("-",$sellDate);
+           $sellMonth = $sliptSellDate["1"];
 
-        $jan="01";
-        $janTot ="0";
+           if ( $sellMonth == 1){
+             $months[0] = $months[0] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 2){
+             $months[1] = $months[1] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 3){
+             $months[2] = $months[2] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 4){
+             $months[3] = $months[0] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 5){
+             $months[4] = $months[4] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 6){
+             $months[5] = $months[5] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 7){
+             $months[6] = $months[6] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 8){
+             $months[7] = $months[7] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 9){
+             $months[8] = $months[8] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 10){
+             $months[9] = $months[9] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 11){
+             $months[10] = $months[10] + $invoiceData["total"];
+           }
+           else if ( $sellMonth == 12){
+             $months[11] = $months[11] + $invoiceData["total"];
+           }
 
-        $feb="02";
-        $febTot="0";
-
-        $march="03";
-        $marchTot="0";
-
-        $april="04";
-        $aprilTot="0";
-
-        $may="05";
-        $mayTot="0";
-
-        $june="06";
-        $juneTot="0";
-
-        $april="04";
-        $aprilTot="0";
-
-        for ($i=0; $i < $invoiceRs -> num_rows ; $i++) { 
-            $invoiceData = $invoiceRs -> fetch_assoc();
-            $sliptInMonth = explode("-" , $invoiceData["date_time"]);
-            $inMonth = $sliptInMonth["1"];
-            if ( $inMonth < 7 ){
-                if ( $inMonth == $jan ){
-                    $janTot = $janTot + $invoiceData["total"];
-                }else if ( $inMonth == $feb ){
-                    $febTot = $febTot + $invoiceData["total"];
-                }else if ( $inMonth == $march ){
-                    $marchTot = $marchTot + $invoiceData["total"];
-                }else if ( $inMonth == $april ){
-                    $aprilTot = $aprilTot + $invoiceData["total"];
-                }else if ( $inMonth == $may ){
-                    $mayTot = $mayTot + $invoiceData["total"];
-                }else if ( $inMonth == $june ){
-                    $juneTot = $juneTot + $invoiceData["total"];
-                }
-            }else {
-
-            }
-            
-            
+          
+           
         }
-        $array["jan"] = $janTot; 
-        $array["feb"] = $febTot; 
-        $array["mar"] = $marchTot; 
-        $array["apr"] = $aprilTot; 
-        $array["may"] = $mayTot; 
-        $array["june"] = $juneTot; 
+        for ($x=0; $x < $thisMonth; $x++) { 
+         $arry[$x] = $months[$x];
+        }
         
-        echo(json_encode($array));
+        echo(json_encode($arry));
     }else {
         header("location:index.php");
     }

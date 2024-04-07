@@ -20,7 +20,7 @@
       <?php
         $invoiceRs = Database::search("SELECT * FROM `invoice` INNER JOIN `product` ON 
         invoice.product_id=product.product_id INNER JOIN `order_status` ON
-        invoice.status_id=order_status.order_status_id WHERE `cou_user_email`='".$email."' ");
+        invoice.status_id=order_status.order_status_id WHERE `cou_user_email`='".$email."' ORDER BY `date_time` DESC ");
         if ( $invoiceRs -> num_rows == 0){
           ?>
           <div class="col-12 text-center">

@@ -1206,8 +1206,10 @@ function income(){
     var r = new XMLHttpRequest();
     r.onreadystatechange = function(){
         if( r.readyState == 4 && r.status == 200 ){
-           var rp = r.responseText;
-           var obj = JSON.parse(rp);
+            var text = r.responseText;
+            var obj = JSON.parse(text);
+             var length = Object.keys(obj).length;
+             const labels = months({count: length});
            
            new Chart(ctx, {
              type: 'line',
@@ -1215,7 +1217,7 @@ function income(){
                labels: labels ,
                datasets: [{
                  label: 'income',
-                 data: [obj["jan"],obj["feb"] , obj["mar"], ],
+                 data: [obj[0],obj[1] , obj[2],obj[3],obj[4],obj[5],obj[6],obj[7],obj[8],obj[9],obj[10],obj[11],obj[12] ],
                  borderWidth: 1
                }]
              },
