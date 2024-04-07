@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin Panale | Tea or Tools</title>
 </head>
-<body onload="income();">
+<body onload="income();sold();">
 <nav class="navbar bg-body-tertiary navbar-expand-md  sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Tea or Tools </a>
@@ -43,7 +43,7 @@
             <a class="nav-link" href="#">History</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="adminLogout();">LogOut</a>
+            <a class="nav-link text-danger" href="#" onclick="adminLogout();">LogOut</a>
           </li>
           
         </ul>
@@ -76,7 +76,7 @@
     <!-- box start -->
     <div class="row">
       <!-- totIncome -->
-      <div class="col-11 offset-1 mt-3 ps-5 col-sm-6 offset-sm-0 col-xl-3 ps-md-5 ps-lg-4 ps-sm-1">
+      <div class="col-11 offset-1 mt-3 ps-5 col-sm-6 offset-sm-0 col-xl-3 ps-md-5 ps-lg-4 ps-sm-1 ps-md-5">
         <div class="card bg-primary text-white" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Total Income</h5>
@@ -90,17 +90,48 @@
             </div>
         </div>
       </div>
-              <!-- totSold -->
+              <!-- totSoldItems -->
       <div class="col-11 offset-1 mt-3 ps-5 col-sm-6 offset-sm-0 col-xl-3 ps-md-5 ps-lg-4 ps-sm-1">
         <div class="card bg-success text-white" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">Total Salles</h5>
+          <h5 class="card-title">Total Sold Items</h5>
           <?php
           $totalSoldItemsRs = Database::search("SELECT SUM(buy_qty) AS totalSoldItems  FROM `invoice`");
           $totalSoldItemsData = $totalSoldItemsRs ->  fetch_assoc();
           $totalSoldItems = $totalSoldItemsData["totalSoldItems"]
           ?>
           <p class="card-text"> <?php echo($totalSoldItems);?> Items</p>
+                
+            </div>
+        </div>
+      </div>
+              <!-- totSales  -->
+      <div class="col-11 offset-1 mt-3 ps-5 col-sm-6 offset-sm-0 col-xl-3 ps-md-5 ps-lg-4 ps-sm-1">
+        <div class="card bg-danger text-white" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Total Sales </h5>
+          <?php
+          $totalSalesRs = Database::search("SELECT COUNT(`invoice_id`) AS totalSales  FROM `invoice`");
+          $totalSalesData = $totalSalesRs ->  fetch_assoc();
+          $totalSales = $totalSalesData["totalSales"]
+          ?>
+          <p class="card-text"> <?php echo($totalSales);?> Times</p>
+                
+            </div>
+        </div>
+      </div>
+
+      <!-- totUsers -->
+      <div class="col-11 offset-1 mt-3 ps-5 col-sm-6 offset-sm-0 col-xl-3 ps-md-5 ps-lg-4 ps-sm-1">
+        <div class="card bg-secondary text-white" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Total Users</h5>
+          <?php
+          $totalUsersRs = Database::search("SELECT COUNT(`email`) AS totalUsers  FROM `user`");
+          $totalUsersData = $totalUsersRs ->  fetch_assoc();
+          $totalUsers = $totalUsersData["totalUsers"];
+          ?>
+          <p class="card-text"> <?php echo($totalUsers);?> Users </p>
                 
             </div>
         </div>
@@ -114,6 +145,15 @@
           
         <h5 class="card-title ">Income Activity</h5>
         <canvas id="myChart" ></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 mt-2">
+      <div class="card ">
+        <div class="card-body">
+          
+        <h5 class="card-title ">Categorie Activity</h5>
+        <canvas id="myChart2" ></canvas>
         </div>
       </div>
     </div>

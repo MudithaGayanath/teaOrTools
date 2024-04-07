@@ -4,7 +4,7 @@
         $_SESSION["u"] = null;
         setcookie("email","" , time() + (-1));
         setcookie("pass", "" , time() + (-1));
-        session_destroy();
+       
         echo("done");
     }
 ?>
