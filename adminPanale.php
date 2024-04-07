@@ -80,18 +80,12 @@
         <div class="card bg-primary text-white" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Total Income</h5>
-            <?php
-              $incomeRs = Database::search("SELECT * FROM `invoice`");
-              $totIncome = 0;
-              $solledItems = 0;
-              for ($i=0; $i < $incomeRs -> num_rows; $i++) { 
-                  $incomeData = $incomeRs -> fetch_assoc();
-                  $totIncome = $totIncome + $incomeData["total"];
-                  $solledItems = $solledItems + $incomeData["buy_qty"];
-              }
-                    
+          <?php
+          $totIncomeRs = Database::search("SELECT SUM(total) AS totalIncome  FROM `invoice`");
+          $totIncomeData = $totIncomeRs ->  fetch_assoc();
+          $totIncome = (double)$totIncomeData["totalIncome"]
           ?>
-          <p class="card-text">RS. <?php echo($totIncome);?>.00</p>
+          <p class="card-text">RS. <?php echo(number_format($totIncome));?></p>
                 
             </div>
         </div>
@@ -101,8 +95,12 @@
         <div class="card bg-success text-white" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Total Salles</h5>
-           
-          <p class="card-text"> <?php echo($solledItems);?> Items</p>
+          <?php
+          $totalSoldItemsRs = Database::search("SELECT SUM(buy_qty) AS totalSoldItems  FROM `invoice`");
+          $totalSoldItemsData = $totalSoldItemsRs ->  fetch_assoc();
+          $totalSoldItems = $totalSoldItemsData["totalSoldItems"]
+          ?>
+          <p class="card-text"> <?php echo($totalSoldItems);?> Items</p>
                 
             </div>
         </div>
