@@ -15,7 +15,7 @@
         $months[10] =0;
         $months[11] =0;
       
-       $sellsRs = Database::search("SELECT * FROM `invoice`");
+        $sellsRs = Database::search("SELECT * FROM `invoice`");
         $tdate = new DateTime();
         $tz = new DateTimeZone("Asia/Colombo");
         $tdate->setTimezone($tz);
@@ -40,7 +40,7 @@
              $months[2] = $months[2] + $invoiceData["total"];
            }
            else if ( $sellMonth == 4){
-             $months[3] = $months[0] + $invoiceData["total"];
+             $months[3] = $months[3] + $invoiceData["total"];
            }
            else if ( $sellMonth == 5){
              $months[4] = $months[4] + $invoiceData["total"];

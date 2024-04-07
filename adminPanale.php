@@ -58,7 +58,7 @@
         <div class="col-12 col-sm-4">Hello , <?php echo($_SESSION["a"]["fname"]." ".$_SESSION["a"]["lname"]); ?></div>
         <?php
             
-            $start_date = new DateTime("2024-2-22 08:00:00");
+            $start_date = new DateTime("2024-01-01 00:00:00");
 
             $tdate = new DateTime();
             $tz = new DateTimeZone("Asia/Colombo");
@@ -81,7 +81,7 @@
         <div class="card-body">
           <h5 class="card-title">Total Income</h5>
           <?php
-          $totIncomeRs = Database::search("SELECT SUM(total) AS totalIncome  FROM `invoice`");
+          $totIncomeRs = Database::search("SELECT SUM(`total`) AS totalIncome  FROM `invoice`");
           $totIncomeData = $totIncomeRs ->  fetch_assoc();
           $totIncome = (double)$totIncomeData["totalIncome"]
           ?>

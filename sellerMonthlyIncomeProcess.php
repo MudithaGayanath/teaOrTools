@@ -41,7 +41,7 @@
               $months[2] = $months[2] + $invoiceData["total"];
             }
             else if ( $sellMonth == 4){
-              $months[3] = $months[0] + $invoiceData["total"];
+              $months[3] = $months[3] + $invoiceData["total"];
             }
             else if ( $sellMonth == 5){
               $months[4] = $months[4] + $invoiceData["total"];
