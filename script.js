@@ -1299,3 +1299,33 @@ function sold(){
 function goToAdvancedSearch(){
     window.location = "advancedSearch.php";
 }
+
+function advancedSearchProcess(){
+    var main = document.getElementById("main");
+    var text = document.getElementById("searchText");
+    var categorie = document.getElementById("categorie");
+    var brand = document.getElementById("brand");
+    var model = document.getElementById("model");
+    var color = document.getElementById("color");
+    var condition = document.getElementById("condition");
+
+    var f = new FormData();
+    f.append("categorie",categorie.value);
+    f.append("brand",brand.value);
+    f.append("model",model.value);
+    f.append("color",color.value);
+    f.append("condition",condition.value);
+    f.append("text",text.value);
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function(){
+        if( r.status == 200 && r.readyState == 4 ){
+            var rText = r.responseText;
+            alert(rText);
+            
+        }
+    }
+    r.open( "POST","advancedSearchProcess.php" , true );
+    r.send( f );
+
+}
