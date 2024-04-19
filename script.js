@@ -1295,3 +1295,7 @@ function sold(){
     r2.open("POST" , "mostSoldCatProcess.php" , true );
     r2.send();
 }
+
+function goToAdvancedSearch(){
+    window.location = "advancedSearch.php";
+}
