@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="bootstrap.css" />
     <title>Home | Tea or Tools</title>
 </head>
@@ -42,7 +43,7 @@
                     <button class="btn btn-primary" type="button" id="button-addon2" onclick="searchText();">Search</button>
                 </div>
             </div>
-            <div class="col-12 col-md-2 text-center text-danger-emphasis fs-3 text-decoration-underline" onclick="goToAdvancedSearch();">Advanced</div>
+            <div class="col-12 col-md-2 text-center text-danger-emphasis fs-3 text-decoration-underline adv" onclick="goToAdvancedSearch();">Advanced</div>
         </div>
             
         

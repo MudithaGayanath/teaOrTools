@@ -1321,7 +1321,7 @@ function advancedSearchProcess(){
     r.onreadystatechange = function(){
         if( r.status == 200 && r.readyState == 4 ){
             var rText = r.responseText;
-            alert(rText);
+            main.innerHTML = rText;
             
         }
     }
