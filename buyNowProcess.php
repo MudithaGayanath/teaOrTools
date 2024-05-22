@@ -46,7 +46,7 @@
                             $productTitle = $productData["title"];
                             $newTot = ((int)$qty * (int)$productData["price"]) + (int)$deliveryFee;
                             $merchantId = "1226127";
-                            $merchantSecret="NDA0NjI1NzYzNzIxMDc2OTI3NzIxNTMwMzYxNTA0MzUzOTUwMTI5Mg==";
+                            $merchantSecret="Mjk5Mjk3NDQ0NzMzNjY5MzU3ODkyOTAzODU3MDUxMTY4NTUyODg1";
                             $currency ="LKR";
                             $hash = strtoupper(
                                 md5(

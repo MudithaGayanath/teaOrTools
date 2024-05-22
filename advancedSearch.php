@@ -19,7 +19,7 @@ include("connection.php");
             <div class="col-12">
                 <div class="input-group mb-3">
                     <input type="text" placeholder="Type Key word to Search" class="form-control" id="searchText" aria-label="Text input with dropdown button" />
-                    <button class="btn btn-primary" type="button" id="button-addon2" onclick="advancedSearchProcess();">Search</button>
+                    <!-- <button class="btn btn-primary" type="button" id="button-addon2" >Search</button> -->
                 </div>
             </div>
             <div class="col-12 col-md-4">
@@ -75,6 +75,9 @@ include("connection.php");
                     ?>
                 </select>
             </div>
+            
+            <button class=" col-10 offset-1 mt-2 col-md-4 offset-md-8  btn btn-primary " onclick="advancedSearchProcess();">Search</button>
+            
         </div>
         <!-- rs -->
         <div class="row mt-2 justify-content-center text-center border border-primary mt-3 mb-3" id="main">

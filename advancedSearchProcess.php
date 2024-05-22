@@ -10,10 +10,16 @@
         $condition = $_POST["condition"];
 
         $query = "SELECT * FROM `product` INNER JOIN `condition` ON 
-        product.condition_condition_id=condition.condition_id ";
+        product.condition_condition_id=condition.condition_id INNER JOIN `brand_has_categorie` ON
+            product.brand_has_categorie_id=brand_has_categorie.id INNER JOIN `model_has_brand` ON
+            product.model_has_brand_id=model_has_brand.id";
         
         if ( !empty($text)){
             $query .= " WHERE `title` LIKE '%".$text."%' ";
+        }elseif ($categorie != 0 && $brand == 0 && $model == 0 && $color == 0 && $condition == 0){
+            $query .= " WHERE `title` LIKE '%".$text."%' AND `id`='".$categorie."'";
+        }else if ( $categorie != 0 && $brand != 0 && $model == 0 && $color == 0 && $condition == 0 ){
+            $query .= " WHERE `title` LIKE '%".$text."%' AND brand_has_categorie.id='".$categorie."' AND model_has_brand.id='".$brand."'";
         }
 
         $rs = Database::search($query);
