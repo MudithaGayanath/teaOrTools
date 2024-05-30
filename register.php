@@ -11,7 +11,7 @@
     <title>Register | Tea or Tools</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container mb-3">
     
         <h1 class="text-center">Registration</h1>
         <div class="row">
@@ -66,6 +66,9 @@
             </div>
         </div>
     </div>
+    <?php
+    include("footer.php");
+    ?>
 <script src="script.js"></script>
 </body>
 </html>

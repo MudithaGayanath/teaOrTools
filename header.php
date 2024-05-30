@@ -7,10 +7,10 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.css" />
-    
+<!--     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </head>
 <body>
 <nav class="navbar bg-body-tertiary navbar-expand-lg  sticky-top">
@@ -59,7 +59,7 @@ session_start();
             <a class="nav-link" href="#" id="msg"></a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="#" id="hel" >Help</a>
+            <a class="nav-link" href="help.php" id="hel" >Help</a>
           </li>
           <li class="nav-item">
             <?php

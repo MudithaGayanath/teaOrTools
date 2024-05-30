@@ -251,6 +251,9 @@
             </div>
         </div>
     </div>
+    <?php
+    include("footer.php");
+    ?>
 <script src="script.js"></script>   
 <script src="bootstrap.bundle.js"></script> 
 <script src="bootstrap.bundle.min.js"></script>

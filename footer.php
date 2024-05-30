@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-12 text-center">
-                <p>&copy; 2024 Your Website. All rights reserved.</p>
+                <p>&copy; 2024 Tea or Tools. All rights reserved.</p>
             </div>
             
         </div>

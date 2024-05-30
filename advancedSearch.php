@@ -13,7 +13,7 @@ include("connection.php");
 </head>
 
 <body onload="active(1);">
-    <div class="container-fluid">
+    <div class="container-fluid p-2">
         <h1 class=" text-center">Advanced Search</h1>
         <div class="row">
             <div class="col-12">
@@ -80,7 +80,7 @@ include("connection.php");
             
         </div>
         <!-- rs -->
-        <div class="row mt-2 justify-content-center text-center border border-primary mt-3 mb-3" id="main">
+        <div class="row mt-2 justify-content-center text-center border border-primary m-3" id="main">
             <div class="col-12">
                 <div class=" display-1">N/A</div>
             </div>

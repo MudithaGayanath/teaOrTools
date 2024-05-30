@@ -15,7 +15,7 @@
         }else if (empty($pass)) {
             echo("Please Enter Your Password.");
         }else {
-            $rs = Database::search("SELECT * FROM `user` WHERE `email`='".$email."' AND `password`='".$pass."'");
+            $rs = Database::search("SELECT * FROM `user` WHERE `email`='".$email."' AND `password`='".$pass."' AND `status_status_id`='1'");
 
             if ( $rs -> num_rows == 1 ){
                 $rsData = $rs -> fetch_assoc();
@@ -26,7 +26,7 @@
                 }
                 echo("done");
             }else {
-                echo("Invalid Email Address or Passowrd.");
+                echo("Invalid Email Address or Password.");
             }
         }
        
