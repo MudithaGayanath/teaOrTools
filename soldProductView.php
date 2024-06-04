@@ -22,10 +22,29 @@
        <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
         <title><?php echo($invoiceData["title"]);?></title>
        </head>
        <body onload="active(8);">
             <div class="container-fluid">
+                   <!-- l1 -->
+            <div class="loader justify-content-center " id="loader">
+                <div class=" text-center  sp ">
+                    <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- l1 -->
+            <!-- l2 -->
+            <div class="loader d-none " id="loader-2">
+                <div class=" text-center  sp ">
+                    <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- l2 -->
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <h3>
@@ -52,13 +71,13 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="row justify-content-center">
+                        <div class="row p-0 justify-content-center">
                         <?php
                             for ($i=0; $i < $productImgRs -> num_rows; $i++) {
                                 $img = $productImgRs -> fetch_assoc(); 
                                 ?>
                                 
-                                    <img src="<?php echo($img["path"]);?>" alt=""  style="width:450px;" class=" col-4  col-md-3  ms-md-5 mb-1  border-primary img-fluid rounded-start img-thumbnail"/>
+                                    <img src="<?php echo($img["path"]);?>" alt=""  style="width: 300px; height: 200px;" class=" border border-danger p-0 m-2 img-fluid "/>
                                
                                 <?php
                             }
@@ -134,6 +153,16 @@
                     </div>
                 </div>
             </div>
+            <script src="jqery.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $("#loader").animate({
+                        opacity: "0%"
+                    }, 1000, function() {
+                        $("#loader").hide();
+                    })
+                });
+            </script>
        </body>
        </html>
         <?php

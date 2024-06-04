@@ -1,4 +1,10 @@
+var date = new Date();
+var monthNumber = date.getMonth() + 1; // Adding 1 to get the 1-based month number
+console.log(monthNumber);
+
 function register() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var fname = document.getElementById("fname");
   var lname = document.getElementById("lname");
   var email = document.getElementById("email");
@@ -21,9 +27,12 @@ function register() {
     if (r.readyState == 4 && r.status == 200) {
       var text = r.responseText;
       if (text == "done") {
+        
         alert("You are successfully registered.Please login");
+        loader.className = "d-none";
         window.location = "login.php";
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -33,6 +42,8 @@ function register() {
 }
 
 function login() {
+ var loader = document.getElementById("loader-2");
+loader.className = "loader";
   var email = document.getElementById("email");
   var pw = document.getElementById("pw");
   var rem = document.getElementById("rme");
@@ -47,8 +58,10 @@ function login() {
     if (r.readyState == 4 && r.status == 200) {
       var text = r.responseText;
       if (text == "done") {
+        loader.className = "d-none";
         window.location = "index.php";
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -160,6 +173,8 @@ function newDisToCity() {
 }
 
 function updateProfileImg() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var img = document.getElementById("profileimageInput");
   var request = new XMLHttpRequest();
 
@@ -182,8 +197,10 @@ function updateProfileImg() {
           r.onreadystatechange = function () {};
           r.open("POST", "addUserProfileProcess.php", true);
           r.send(f);
+          loader.className = "d-none";
         } else {
           alert(response);
+          loader.className = "d-none";
           window.location.reload();
         }
       }
@@ -207,6 +224,8 @@ function show() {
 }
 
 function addAddress() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var address1 = document.getElementById("address1");
   var address2 = document.getElementById("address2");
   var provinc = document.getElementById("provinc");
@@ -226,9 +245,12 @@ function addAddress() {
       var text = r.responseText;
       if (text == "done") {
         alert("Address Added Succsessfully");
+
         window.location.reload();
       } else {
+        loader.className = "d-none";
         alert(text);
+
       }
     }
   };
@@ -237,12 +259,17 @@ function addAddress() {
 }
 
 function changeAddressOpenModal() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var model = document.getElementById("model");
   var newModel = new bootstrap.Modal(model);
+  loader.className = "d-none";
   newModel.show();
 }
 
 function changeAddress() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var address1 = document.getElementById("newAdd");
   var address2 = document.getElementById("newAdd2");
   var provinc = document.getElementById("newProvinc");
@@ -264,6 +291,7 @@ function changeAddress() {
         alert("Address  Updated Succsessfully");
         window.location.reload();
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -273,10 +301,13 @@ function changeAddress() {
 }
 
 function goToAddProduct() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   window.location = "addProduct.php";
 }
 
 function changeBrand() {
+
   var cat = document.getElementById("categorie");
   var brand = document.getElementById("brand");
   var model = document.getElementById("model");
@@ -284,20 +315,25 @@ function changeBrand() {
   var f = new FormData();
   var r = new XMLHttpRequest();
   cat.onchange = function () {
+    var loader = document.getElementById("loader-2");
+    loader.className = "loader";
     f.append("catId", cat.value);
 
     r.onreadystatechange = function () {
       if (r.readyState == 4 && r.status == 200) {
         var text = r.responseText;
         if (text == "0") {
+          
           brand.innerHTML = "<option value='0'> Select Brand </option>";
           model.innerHTML = "<option value='0'> Select Model </option>";
           color.innerHTML = "<option value='0'> Select Model </option>";
           brand.setAttribute("true");
           model.setAttribute("true");
           color.setAttribute("true");
+          loader.className = "d-none";
         } else {
           brand.innerHTML = text;
+          loader.className = "d-none";
         }
       }
     };
@@ -307,12 +343,15 @@ function changeBrand() {
 }
 
 function changeModel() {
+
   var brand = document.getElementById("brand");
   var model = document.getElementById("model");
 
   var f = new FormData();
   var r = new XMLHttpRequest();
   brand.onchange = function () {
+    var loader = document.getElementById("loader-2");
+    loader.className = "loader";
     f.append("brandId", brand.value);
 
     r.onreadystatechange = function () {
@@ -321,8 +360,10 @@ function changeModel() {
         if (text == "0") {
           model.innerHTML = "<option value='0'> Select Model </option>";
           model.setAttribute("true");
+          loader.className = "d-none";
         } else {
           model.innerHTML = text;
+          loader.className = "d-none";
         }
       }
     };
@@ -332,12 +373,15 @@ function changeModel() {
 }
 
 function changeColor() {
+
   var model = document.getElementById("model");
   var color = document.getElementById("color");
 
   var f = new FormData();
   var r = new XMLHttpRequest();
   model.onchange = function () {
+    var loader = document.getElementById("loader-2");
+    loader.className = "loader";
     f.append("modelId", model.value);
 
     r.onreadystatechange = function () {
@@ -346,8 +390,10 @@ function changeColor() {
         if (text == "0") {
           color.innerHTML = "<option value='0'> Select Color </option>";
           color.setAttribute("ture");
+          loader.className = "d-none";
         } else {
           color.innerHTML = text;
+          loader.className = "d-none";
         }
       }
     };
@@ -357,6 +403,8 @@ function changeColor() {
 }
 
 function addproductImg() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var img = document.getElementById("addImg");
   var f = new FormData();
   var r = new XMLHttpRequest();
@@ -377,6 +425,7 @@ function addproductImg() {
             var url = window.URL.createObjectURL(file);
             document.getElementById("i" + x).src = url;
           }
+          loader.className = "d-none";
         } else {
           alert(text);
           window.location.reload();
@@ -389,6 +438,8 @@ function addproductImg() {
 }
 
 function addProduct() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var category = document.getElementById("categorie");
   var brand = document.getElementById("brand");
   var model = document.getElementById("model");
@@ -424,9 +475,11 @@ function addProduct() {
     if ((request.status == 200) & (request.readyState == 4)) {
       var text = request.responseText;
       if (text == "add") {
+        loader.className = "d-none";
         alert("Product Added Successfully");
         window.location = "myProducts.php";
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -436,6 +489,8 @@ function addProduct() {
 }
 
 function myProductSearch() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var row = document.getElementById("sortRow");
   var serch = document.getElementById("text");
 
@@ -444,12 +499,14 @@ function myProductSearch() {
 
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
-    if ((r.status == 200) & (r.readyState == 4)) {
+    if ((r.status == 200) && (r.readyState == 4)) {
       var text = r.responseText;
       if (text == "empty") {
+        loader.className = "d-none";
         alert("Enter Product Title");
       } else {
         row.innerHTML = text;
+        loader.className = "d-none";
       }
     }
   };
@@ -458,17 +515,21 @@ function myProductSearch() {
 }
 
 function stor() {
+
   var storId = document.getElementById("stor");
   var row = document.getElementById("sortRow");
   var f = new FormData();
   var r = new XMLHttpRequest();
 
   storId.onchange = function () {
+    var loader = document.getElementById("loader-2");
+    loader.className = "loader";
     f.append("sId", storId.value);
     r.onreadystatechange = function () {
       if (r.status == 200 && r.readyState == 4) {
         var text = r.responseText;
         row.innerHTML = text;
+        loader.className = "d-none";
       }
     };
     r.open("POST", "myProductStorProcess.php", true);
@@ -477,6 +538,7 @@ function stor() {
 }
 
 function active(id) {
+
   var home = document.getElementById("h");
   var profile = document.getElementById("p");
   var product = document.getElementById("mp");
@@ -511,13 +573,17 @@ function active(id) {
 }
 
 function logOut() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.status == 200 && r.readyState == 4) {
       var text = r.responseText;
       if (text == "done") {
+        loader.className = "d-none";
         window.location = "index.php";
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -527,6 +593,8 @@ function logOut() {
 }
 
 function postalcode() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var pc = document.getElementById("newPCode");
   var city = document.getElementById("newCity");
 
@@ -536,6 +604,7 @@ function postalcode() {
       if (r.status == 200 && r.readyState == 4) {
         var text = r.responseText;
         pc.value = text;
+        loader.className = "d-none";
       }
     };
     r.open("GET", "postalCodeProcess.php?cId=" + city.value, true);
@@ -544,6 +613,8 @@ function postalcode() {
 }
 
 function postalcode2() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var pc = document.getElementById("pCode");
   var city = document.getElementById("city");
 
@@ -553,6 +624,7 @@ function postalcode2() {
       if (r.status == 200 && r.readyState == 4) {
         var text = r.responseText;
         pc.value = text;
+        loader.className = "d-none";
       }
     };
     r.open("GET", "postalCodeProcess.php?cId=" + city.value, true);
@@ -561,6 +633,8 @@ function postalcode2() {
 }
 
 function wish(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.status == 200 && r.readyState == 4) {
@@ -583,13 +657,19 @@ function wish(id) {
 var cid;
 var cartModal;
 function addToCartModal(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   cid = id;
   var cm = document.getElementById("cartModal");
   cartModal = new bootstrap.Modal(cm);
+  loader.className = "d-none";
   cartModal.show();
 }
 
 function addToCartFormIndex() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
+
   var cartQty = document.getElementById("cartQty");
 
   var r = new XMLHttpRequest();
@@ -600,29 +680,30 @@ function addToCartFormIndex() {
         alert("Added To Cart");
         window.location = "cart.php";
       } else if (text == "Self Items Can't Add To Cart") {
+        loader.className = "d-none";
         alert(text);
         cartModal.hide();
       } else if (text == "Invalid Number") {
         alert(text);
         cartQty.value = 1;
+        loader.className = "d-none";
       } else if (text == "Over Limit") {
         alert(text);
         cartQty.value = 1;
+        loader.className = "d-none";
       } else {
         alert("Please Login");
         window.location = "login.php";
       }
     }
   };
-  r.open(
-    "GET",
-    "addToCartProcess.php?pId=" + cid + "&qty=" + cartQty.value,
-    true
-  );
+  r.open( "GET","addToCartProcess.php?pId=" + cid + "&qty=" + cartQty.value, true );
   r.send();
 }
 
 function addToCart(pid) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var cartQty = document.getElementById("qty");
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
@@ -637,10 +718,12 @@ function addToCart(pid) {
       } else if (text == "Invalid Number") {
         alert(text);
         cartQty.value = 1;
+        loader.className = "d-none";
       } else if (text == "Over Limit") {
         alert(text);
         cartQty.value = 1;
       } else if (text == "Please Enter QTY") {
+        loader.className = "d-none";
         alert(text);
       } else if (text == "log") {
         window.location = "login.php";
@@ -659,6 +742,8 @@ function addToCart(pid) {
 }
 
 function removeFromCart(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.status == 200 && r.readyState == 4) {
@@ -677,10 +762,14 @@ function removeFromCart(id) {
 }
 
 function goToSingaleProductView(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   window.location = "singalProductView.php?pid=" + id;
 }
 
 function singalProudctTotal(price, items) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var deliveryFee = document.getElementById("deliveryFee");
   var qty = document.getElementById("qty");
   var tot = document.getElementById("tot");
@@ -699,17 +788,22 @@ function singalProudctTotal(price, items) {
         window.location = "index.php";
       } else if (text == "0") {
         tot.value = "0.00";
+        loader.className = "d-none";
       } else if (text == "invalid") {
+        loader.className = "d-none";
         alert("Invalid QTY");
         window.location.reload();
       } else if (text == "over") {
+       
         alert("Over Limite");
         var newdf = parseInt(deliveryFee.value);
         var itot = price * items + newdf;
         qty.value = items;
         tot.value = itot + ".00";
+        loader.className = "d-none";
       } else {
         tot.value = text + ".00";
+        loader.className = "d-none";
       }
     }
   };
@@ -718,6 +812,8 @@ function singalProudctTotal(price, items) {
 }
 
 function buyNow(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var tot = document.getElementById("tot");
   var qty = document.getElementById("qty");
   var deliveryFee = document.getElementById("deliveryFee");
@@ -738,20 +834,25 @@ function buyNow(id) {
       } else if (text == "iqty") {
         alert("Invalid QTY");
         qty.value = 1;
+        loader.className = "d-none";
       } else if (text == "address") {
         alert("Add Your Addrss");
         window.location = "userProfile.php";
       } else if (text == "noQt") {
         alert("Please Enter QTY");
+        loader.className = "d-none";
       } else if (text == "worng") {
         alert("Something Went Worng");
         window.location = "index.php";
       } else if (text == "self") {
         alert("Self Items Can't Buy");
+        loader.className = "d-none";
       } else if (text == "over") {
         alert("Over Limit");
         qty.value = 1;
+        loader.className = "d-none";
       } else {
+        loader.className = "d-none";
         var obj = JSON.parse(text);
         var amount = obj["total"];
         var email = obj["email"];
@@ -819,12 +920,15 @@ function buyNow(id) {
 }
 
 function updateQty(id, qty) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var f = new FormData();
   f.append("pId", id);
   f.append("qty", qty);
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.status == 200 && r.readyState == 4) {
+      loader.className = "d-none";
       var text = r.responseText;
     }
   };
@@ -833,6 +937,8 @@ function updateQty(id, qty) {
 }
 
 function invoice(orderId, pid, qty, total, deleveryFee) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   window.location =
     "invoice.php?orderId=" +
     orderId +
@@ -847,6 +953,7 @@ function invoice(orderId, pid, qty, total, deleveryFee) {
 }
 
 function printInvoice() {
+  
   var page = document.body.innerHTML;
   var restor = page;
   var invoice = document.getElementById("main");
@@ -861,6 +968,8 @@ function printInvoice() {
 
 var newpM;
 function forget() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var email = document.getElementById("email");
   var f = new FormData();
   f.append("e", email.value);
@@ -872,8 +981,10 @@ function forget() {
       if (text == "send") {
         newpM = document.getElementById("npm");
         var mod = new bootstrap.Modal(newpM);
+        loader.className = "d-none";
         mod.show();
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -883,6 +994,8 @@ function forget() {
 }
 
 function chnagePassword() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var np = document.getElementById("np");
   var rnp = document.getElementById("rnp");
   var vc = document.getElementById("vc");
@@ -902,6 +1015,7 @@ function chnagePassword() {
         alert("Password Changed");
         window.location.reload();
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -911,12 +1025,15 @@ function chnagePassword() {
 }
 
 function changeMenu() {
+ 
   var cat = document.getElementById("cat");
   var searchRs = document.getElementById("searchRs");
   var main = document.getElementById("main");
   var f = new FormData();
 
   cat.onchange = function () {
+    var loader = document.getElementById("loader-2");
+    loader.className = "loader";
     f.append("cat", cat.value);
 
     var r = new XMLHttpRequest();
@@ -927,10 +1044,12 @@ function changeMenu() {
           main.className = "row mt-2 justify-content-center text-center  ";
           searchRs.className =
             "row mt-2 justify-content-center text-center d-none";
+            loader.className = "d-none";
         } else {
           main.className = "row mt-2 justify-content-center text-center d-none";
           searchRs.innerHTML = text;
           searchRs.className = "row mt-2 justify-content-center text-center";
+          loader.className = "d-none";
         }
       }
     };
@@ -940,6 +1059,8 @@ function changeMenu() {
 }
 
 function searchText() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var cat = document.getElementById("cat");
   var searchRs = document.getElementById("searchRs");
   var main = document.getElementById("main");
@@ -955,10 +1076,12 @@ function searchText() {
       var text = r.responseText;
       if (text == "empty") {
         alert("Please Enter Product Title");
+        loader.className = "d-none";
       } else {
         main.className = "row mt-2 justify-content-center text-center d-none";
         searchRs.innerHTML = text;
         searchRs.className = "row mt-2 justify-content-center text-center";
+        loader.className = "d-none";
       }
     }
   };
@@ -967,16 +1090,23 @@ function searchText() {
 }
 
 function viewMore() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var too = document.getElementById("tooltip");
   var tooltip = new bootstrap.Tooltip(too);
+  loader.className = "d-none";
   tooltip.show();
 }
 
 function goToAdminLogin() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   window.location = "adminLogin.php";
 }
 
 function adminLoginModel() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var email = document.getElementById("adminEmail");
   var password = document.getElementById("adminPassword");
   var f = new FormData();
@@ -990,8 +1120,10 @@ function adminLoginModel() {
       if (text == "done") {
         var adminModel = document.getElementById("adminModal");
         var newModel = new bootstrap.Modal(adminModel);
+        loader.className = "d-none";
         newModel.show();
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -1001,6 +1133,8 @@ function adminLoginModel() {
 }
 
 function adminLogin() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var vCode = document.getElementById("adminVericode");
   var f = new FormData();
   f.append("vc", vCode.value);
@@ -1012,6 +1146,7 @@ function adminLogin() {
       if (text == "done") {
         window.location = "adminPanale.php";
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -1021,10 +1156,14 @@ function adminLogin() {
 }
 
 function goToUpadteProduct(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   window.location = "updateProduct.php?pId=" + id;
 }
 
 function updateProduct(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var price = document.getElementById("price");
   var status = document.getElementById("status");
   var qty = document.getElementById("qty");
@@ -1047,6 +1186,7 @@ function updateProduct(id) {
         alert("Product Updated Succsessfully");
         window.location = "myProducts.php";
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -1070,6 +1210,8 @@ const MONTHS = [
   "December",
 ];
 function income() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   const ctx = document.getElementById("myChart");
 
   function months(config) {
@@ -1085,12 +1227,13 @@ function income() {
     }
     return values;
   }
-  const labels = months({ count: 3 });
+  const labels = months({ count: monthNumber });
 
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4 && r.status == 200) {
       var text = r.responseText;
+      loader.className = "d-none";
       var obj = JSON.parse(text);
       var length = Object.keys(obj).length;
       const labels = months({ count: length });
@@ -1115,7 +1258,6 @@ function income() {
                 obj[9],
                 obj[10],
                 obj[11],
-                obj[12],
               ],
               borderWidth: 1,
             },
@@ -1165,6 +1307,8 @@ if (viwe == 0) {
 }
 
 function sellerMonthlyIncome() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   const div = document.getElementById("myChart");
 
   function months(config) {
@@ -1185,9 +1329,10 @@ function sellerMonthlyIncome() {
   r.onreadystatechange = function () {
     if (r.readyState == 4 && r.status == 200) {
       var text = r.responseText;
+      loader.className = "d-none";
       var obj = JSON.parse(text);
       var length = Object.keys(obj).length;
-      const labels = months({ count: length });
+      const labels = months({ count: monthNumber });
 
       new Chart(div, {
         type: "line",
@@ -1230,6 +1375,8 @@ function sellerMonthlyIncome() {
 }
 
 function adminLogout() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4 && r.status == 200) {
@@ -1363,7 +1510,7 @@ function advancedSearchProcess() {
 }
 
 function changeUserStatus(i) {
-  var email = document.getElementById(i).innerHTML;
+  var email = document.getElementById(i).value;
   var f = new FormData();
   f.append("e", email);
 
@@ -1837,4 +1984,35 @@ function addFeedProcess(){
       r.send(f);
     
   
+}
+
+function goToUserDetails(id){
+  var email = document.getElementById(id).innerHTML;
+  var f = new FormData();
+  f.append("email", email);
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.status == 200 && r.readyState == 4) {
+      var text = r.responseText;
+  
+      window.location = "userDetails.php?email="+text;
+    }
+  };
+  r.open("POST", "expoEmailProcess.php", true);
+  r.send(f);
+
+}
+
+function pdf(){
+  var body = document.body.innerHTML;
+  var content = document.getElementById("conten");
+  var row = document.getElementById("row");
+  row.className="d-none";
+  document.body.innerHTML = content.innerHTML;
+  window.print();
+  document.body.innerHTML = body;
+}
+
+function productDetails(id){
+  window.location = "productDetails.php?pId="+id;
 }

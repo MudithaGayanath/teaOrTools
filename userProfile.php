@@ -11,10 +11,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
     <title>Profile | Tea or Tools</title>
 </head>
 <body onload="active(2);salesAlert();">
     <div class="container-fluid">
+          <!-- l1 -->
+          <div class="loader justify-content-center " id="loader">
+            <div class=" text-center  sp ">
+                <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <!-- l1 -->
+        <!-- l2 -->
+        <div class="loader d-none " id="loader-2">
+            <div class=" text-center  sp ">
+                <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <!-- l2 -->
         <div class="row">
             <!-- img -->
             <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center  p-3 py-0 py-md-5">
@@ -257,6 +276,16 @@
 <script src="script.js"></script>   
 <script src="bootstrap.bundle.js"></script> 
 <script src="bootstrap.bundle.min.js"></script>
+<script src="jqery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $("#loader").animate({
+        opacity: "0%"
+      }, 1000, function() {
+        $("#loader").hide();
+      })
+    });
+  </script>
 </body>
 </html>
         <?php

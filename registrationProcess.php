@@ -43,7 +43,7 @@
         }else if(!preg_match("/07[0,1,2,4,5,6,7,8]{1}[0-9]{7}/",$mobile)){
             echo ("Invalid Mobile Number.");
         }else {
-            $userRs = Database::search("SELECT * FROM `user` WHERE `email`='".$email."' AND `mobile`='".$mobile."'");
+            $userRs = Database::search("SELECT * FROM `user` WHERE `email`='".$email."' OR `mobile`='".$mobile."'");
             if ( $userRs -> num_rows > 0 ){
                 echo ("User with the same Email Address or same Mobile Number already exists.");
             }else {  

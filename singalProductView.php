@@ -34,12 +34,31 @@ if (isset($_GET["pid"])) {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="bootstrap.css" />
+        <link rel="stylesheet" href="style.css">
         <script src="jqery.min.js"></script>
         <title><?php echo ($productData["title"]); ?> | Tea or Tools</title>
     </head>
 
     <body onload="singalProudctTotal(<?php echo ($productData['price']); ?>,<?php echo ($productData['qty']) ?>);active(1);">
         <div class="container-fluid">
+              <!-- l1 -->
+          <div class="loader justify-content-center " id="loader">
+            <div class=" text-center  sp ">
+                <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <!-- l1 -->
+        <!-- l2 -->
+        <div class="loader d-none " id="loader-2">
+            <div class=" text-center  sp ">
+                <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <!-- l2 -->
 
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -481,6 +500,15 @@ if (isset($_GET["pid"])) {
         include("footer.php");
         ?>
         <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+        <script>
+        $(document).ready(function() {
+            $("#loader").animate({
+                opacity: "0%"
+            }, 1000, function() {
+                $("#loader").hide();
+            })
+        });
+    </script>
     </body>
 
     </html>
