@@ -62,7 +62,7 @@
         elseif (empty($discription)){
             echo("Please Enter Discription");
         }
-        else if ( strlen($discription) > 100 ){
+        else if ( strlen($discription) > 1000 ){
             echo("Description Length Should be Lower Than 100 Characters");
         }
         else if (empty($_FILES)) {

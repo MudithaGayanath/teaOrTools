@@ -228,6 +228,8 @@ if (isset($_SESSION["u"])) {
   </div>
 </div>
 <script src="jqery.min.js"></script>
+    <script src="bootstrap.bundle.js"></script>
+<script src="jqery.min.js"></script>
             <script>
                 $(document).ready(function() {
                     $("#loader").animate({

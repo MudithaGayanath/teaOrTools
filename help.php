@@ -36,7 +36,7 @@ include("header.php");
         <h1>Buy</h1>
         <h5>You can use following test card numbers to test simulated successful payments.</h5>
         <div class="row justify-content-center text-center">
-            <div class="card m-3" style="width: 18rem;">
+            <div class="card m-3 p-0" style="width: 18rem;">
 
                 <div class="card-body ">
                     <h5 class="card-title">Visa </h5>
@@ -45,7 +45,7 @@ include("header.php");
                     <p class="card-text m-1">Expir - 12/26 </p>
                 </div>
             </div>
-            <div class="card m-3" style="width: 18rem;">
+            <div class="card m-3 p-0" style="width: 18rem;">
 
                 <div class="card-body ">
                     <h5 class="card-title">MasterCard </h5>

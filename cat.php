@@ -14,6 +14,7 @@ if (isset($_SESSION["a"])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap.css">
+        <link rel="stylesheet" href="style.css">
         <title>Categories | Tea or Tools</title>
     </head>
 
@@ -54,6 +55,24 @@ if (isset($_SESSION["a"])) {
       </div>
     </nav>
         <div class=" container-fluid ">
+            <!-- l1 -->
+      <div class="loader justify-content-center " id="loader">
+                <div class=" text-center  sp ">
+                    <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- l1 -->
+            <!-- l2 -->
+            <div class="loader d-none " id="loader-2">
+                <div class=" text-center  sp ">
+                    <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- l2 -->
             <h1>Categories Table</h1>
            <div class="row">
             <div class="col-12 col-md-10 offset-md-1">
@@ -124,11 +143,22 @@ if (isset($_SESSION["a"])) {
   </div>
         <!-- model -->
        
-        <script src="bootstrap.bundle.js"></script>
-        <script src="script.js"></script>
+     
         <?php
     include("footer.php");
     ?>
+    <script src="script.js"></script>
+     <script src="jqery.min.js"></script>
+    <script src="bootstrap.bundle.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#loader").animate({
+                opacity: "0%"
+            }, 1000, function() {
+                $("#loader").hide();
+            })
+        });
+    </script>
     </body>
 
     </html>

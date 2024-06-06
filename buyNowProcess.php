@@ -52,7 +52,7 @@
                                 md5(
                                     $merchantId . 
                                     $orderId . 
-                                    number_format($tot, 2, '.', '') . 
+                                    number_format($newTot, 2, '.', '') . 
                                     $currency .  
                                     strtoupper(md5($merchantSecret)) 
                                 ) 

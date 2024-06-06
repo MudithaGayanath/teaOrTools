@@ -11,15 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $query = "SELECT * FROM `product` 
     INNER JOIN `condition` ON  product.condition_condition_id=condition.condition_id 
-    INNER JOIN brand_has_categorie ON product.brand_has_categorie_id=brand_has_categorie.id
-    INNER JOIN model_has_color ON  product.model_has_color_id=model_has_color.id
-    INNER JOIN model_has_brand ON product.model_has_brand_id=model_has_brand.id";
+    INNER JOIN `brand_has_categorie` ON product.brand_has_categorie_id=brand_has_categorie.id
+    INNER JOIN `model_has_color` ON  product.model_has_color_id=model_has_color.id
+    INNER JOIN `model_has_brand` ON product.model_has_brand_id=model_has_brand.id";
 
     if (!empty($text)) {
 
         if (!empty($text) && $categorie == 0 && $brand == 0 && $model == 0 && $color == 0 && $condition == 0) {
             $query .= " WHERE `title` LIKE '%" . $text . "%' ";
-        } else if (!empty($text) && $categorie != 0 && $brand == 0 && $model == 0 && $color == 0 && $condition == 0) {
+        } 
+        else if (!empty($text) && $categorie != 0 && $brand == 0 && $model == 0 && $color == 0 && $condition == 0) {
             $query .= " WHERE `title` LIKE '%" . $text . "%' AND `categorie_categorie_id`='" . $categorie . "' ";
         } else if (!empty($text) && $categorie != 0 && $brand != 0 && $model == 0 && $color == 0 && $condition == 0) {
             $query .= " WHERE `title` LIKE '%" . $text . "%' AND `categorie_categorie_id`='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' ";
@@ -34,26 +35,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $query .= " WHERE `title` LIKE '%" . $text . "%' AND `condition_condition_id`='" . $condition . "' ";
         }
     } else {
-        // if ($categorie == 0 || $brand == 0 || $model == 0 || $color == 0 || $condition == 0) {
-            if ($categorie != 0 && $brand == 0 && $model == 0 && $color == 0 && $condition == 0) {
-                $query .= " WHERE `categorie_categorie_id`='" . $categorie . "'";
+        
+
+            if ( $categorie != 0 && $brand == 0 && $model == 0 && $color == 0 && $condition == 0) {
+                $query .= " WHERE  `categorie_categorie_id`='" . $categorie . "' ";
             } else if ($categorie != 0 && $brand != 0 && $model == 0 && $color == 0 && $condition == 0) {
-                $query .= " WHERE `categorie_categorie_id`='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' ";
-            } else if ($categorie != 0 && $brand != 0 && $model != 0 && $color == 0 && $condition == 0) {
-                $query .= " WHERE categorie_categorie_id='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' AND model_has_brand.model_model_id='" . $model . "'";
-            } else if ($categorie != 0 && $brand != 0 && $model != 0 && $color != 0 && $condition == 0) {
-                $query .= " WHERE categorie_categorie_id='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' AND model_has_brand.model_model_id='" . $model . "' AND model_has_color.color_color_id='" . $color . "'";
-            } else if ($categorie != 0 && $brand != 0 && $model != 0 && $color != 0 && $condition != 0) {
-                $query .= " WHERE categorie_categorie_id='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' AND model_has_brand.model_model_id='" . $model . "' AND model_has_color.color_color_id='" . $color . "' AND `condition_condition_id`='" . $condition . "' ";
-            }
-    
-        //     if ($categorie != 0 && $condition != 0) {
-        //         $query .= " WHERE `categorie_categorie_id`='" . $categorie . "' AND `condition_condition_id`='" . $condition . "'";
-        //     } else if ($categorie != 0 && $brand != 0 && $condition != 0) {
-        //         $query .= " WHERE `categorie_categorie_id`='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' AND `condition_condition_id`='" . $condition . "'";
-        //     } else if ($categorie != 0 && $brand != 0 && $model != 0 && $condition != 0) {
-        //         $query .= " WHERE `categorie_categorie_id`='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "'  AND model_has_brand.model_model_id='" . $model . "' AND `condition_condition_id`='" . $condition . "'";
-        //     }
+                $query .= " WHERE  `categorie_categorie_id`='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' ";
+            } else if ( $categorie != 0 && $brand != 0 && $model != 0 && $color == 0 && $condition == 0) {
+                $query .= " WHERE  categorie_categorie_id='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' AND model_has_brand.model_model_id='" . $model . "'";
+            } else if ( $categorie != 0 && $brand != 0 && $model != 0 && $color != 0 && $condition == 0) {
+                $query .= " WHERE  categorie_categorie_id='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' AND model_has_brand.model_model_id='" . $model . "' AND model_has_color.color_color_id='" . $color . "'";
+            } else if ( $categorie != 0 && $brand != 0 && $model != 0 && $color != 0 && $condition != 0) {
+                $query .= " WHERE  categorie_categorie_id='" . $categorie . "' AND brand_has_categorie.brand_brand_id='" . $brand . "' AND model_has_brand.model_model_id='" . $model . "' AND model_has_color.color_color_id='" . $color . "' AND `condition_condition_id`='" . $condition . "' ";
+            } 
+        
        
     }
 

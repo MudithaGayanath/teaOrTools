@@ -14,7 +14,8 @@ if (isset($_SESSION["a"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.css">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin Panale | Tea or Tools</title>
   </head>
 
@@ -41,9 +42,7 @@ if (isset($_SESSION["a"])) {
               <li class="nav-item">
                 <a class="nav-link" href="manageProducts.php">Manger Products</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">History</a>
-              </li>
+             
               <li class="nav-item">
                 <a class="nav-link text-danger" href="#" onclick="adminLogout();">LogOut</a>
               </li>
@@ -56,7 +55,26 @@ if (isset($_SESSION["a"])) {
     </nav>
 
     <div class="container-fluid">
+      <!-- l1 -->
+      <div class="loader justify-content-center " id="loader">
+        <div class=" text-center  sp ">
+          <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <!-- l1 -->
+      <!-- l2 -->
+      <div class="loader d-none " id="loader-2">
+        <div class=" text-center  sp ">
+          <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <!-- l2 -->
       <div class="row">
+      
         <div class="col-12 col-sm-4">Hello , <?php echo ($_SESSION["a"]["fname"] . " " . $_SESSION["a"]["lname"]); ?></div>
         <?php
 
@@ -76,11 +94,11 @@ if (isset($_SESSION["a"])) {
       </div>
 
       <!-- box start -->
-      <div class="row justify-content-center justify-content-lg-around">
+      <div class="row justify-content-center justify-content-lg-around" id="adReport">
         <!-- totIncome -->
         <div class="card bg-primary text-white m-2" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Total Income</h5>
+            <h5 class="card-title">Total Cash</h5>
             <?php
             $totIncomeRs = Database::search("SELECT SUM(`total`) AS totalIncome  FROM `invoice`");
             $totIncomeData = $totIncomeRs->fetch_assoc();
@@ -132,6 +150,9 @@ if (isset($_SESSION["a"])) {
         </div>
 
       </div>
+      <div class="row justify-content-end ">
+        <button class=" btn col-1" onclick="adReoprt();" id="save">Save</button>
+      </div>
       <!-- box end -->
       <div class="row">
         <div class="col-12 col-md-6 mt-2">
@@ -139,13 +160,13 @@ if (isset($_SESSION["a"])) {
             <div class="card-body">
               <div class="row">
                 <div class="col-6">
-                  <h5 class="card-title ">Income Activity</h5>
+                  <h5 class="card-title ">Cash Flow</h5>
 
                 </div>
-                <div class="col-6 text-end" id="pBtn">
+                <!-- <div class="col-6 text-end" id="pBtn">
                   <p class=" " onclick="printChart();">Print</p>
 
-                </div>
+                </div> -->
               </div>
               <div id="chart">
 
@@ -154,6 +175,7 @@ if (isset($_SESSION["a"])) {
             </div>
           </div>
         </div>
+       
         <div class="col-12 col-md-6 mt-2">
           <div class="card ">
             <div class="card-body">
@@ -200,7 +222,7 @@ if (isset($_SESSION["a"])) {
             <h5 class="card-title">Brands & Categories</h5>
           </div>
         </div>
-      
+
         <div class="card bg-success text-white m-2" style="width: 18rem;" onclick="goToMandB();">
           <div class="card-body">
             <h5 class="card-title">Models & Brands</h5>
@@ -218,6 +240,16 @@ if (isset($_SESSION["a"])) {
 
     <script src="bootstrap.bundle.js"></script>
     <script src="script.js"></script>
+    <script src="jqery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#loader").animate({
+          opacity: "0%"
+        }, 1000, function() {
+          $("#loader").hide();
+        })
+      });
+    </script>
   </body>
 
   </html>

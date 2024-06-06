@@ -9,9 +9,9 @@ if (isset($_SESSION["a"])) {
     $page = 1;
     if (isset($_GET["page"])) {
         $pNum = $_GET["page"];
-        if ( $pNum <= 0 ){
+        if ($pNum <= 0) {
             $page = 1;
-        }else{
+        } else {
 
             $page = $_GET["page"];
         }
@@ -20,9 +20,9 @@ if (isset($_SESSION["a"])) {
     }
 
     $totPages = ceil($tot / $resultPrePage);
-    
+
     $offset = ($page - 1) * $resultPrePage;
-    
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -31,11 +31,12 @@ if (isset($_SESSION["a"])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap.css">
+        <link rel="stylesheet" href="style.css">
         <title>Color | Tea or Tools</title>
     </head>
 
     <body>
-<nav class="navbar bg-body-tertiary navbar-expand-md  sticky-top">
+        <nav class="navbar bg-body-tertiary navbar-expand-md  sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="adminPanale.php">Tea or Tools </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -69,8 +70,26 @@ if (isset($_SESSION["a"])) {
                     </div>
                 </div>
             </div>
-</nav>
+        </nav>
         <div class=" container-fluid ">
+            <!-- l1 -->
+            <div class="loader justify-content-center " id="loader">
+                <div class=" text-center  sp ">
+                    <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- l1 -->
+            <!-- l2 -->
+            <div class="loader d-none " id="loader-2">
+                <div class=" text-center  sp ">
+                    <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- l2 -->
             <h1>Color Table</h1>
             <div class="row">
                 <div class="col-12 col-md-10 offset-md-1">
@@ -173,8 +192,19 @@ if (isset($_SESSION["a"])) {
             </div>
         </div>
         <!-- model -->
+        <?php include("footer.php"); ?>
         <script src="bootstrap.bundle.js"></script>
         <script src="script.js"></script>
+        <script src="jqery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#loader").animate({
+                    opacity: "0%"
+                }, 1000, function() {
+                    $("#loader").hide();
+                })
+            });
+        </script>
     </body>
 
     </html>

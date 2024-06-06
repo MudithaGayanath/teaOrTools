@@ -183,7 +183,7 @@ if (isset($_SESSION["u"])) {
                                 <input type="text" id="gtot" readonly class="form-control" value="<?php echo ($grandTot . ".00"); ?>" aria-label="Amount (to the nearest dollar)">
                             </div>
                         </div>
-                        <button type="button" class=" btn btn-danger col-6 mt-2 mb-2">Buy All</button>
+                        <button type="button" class=" btn btn-danger col-6 mt-2 mb-2" onclick="buyAll();">Buy All</button>
                     </div>
                 <?php
                 } else {
@@ -207,7 +207,7 @@ if (isset($_SESSION["u"])) {
             <!-- grand total -->
 
         </div>
-
+        <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
         <script src="script.js"></script>
         <script src="jqery.min.js"></script>
         <script>

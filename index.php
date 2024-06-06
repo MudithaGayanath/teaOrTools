@@ -4,7 +4,7 @@ include("connection.php");
 
 $mRs = Database::search("SELECT * FROM `product`");
 $tot = $mRs->num_rows;
-$resultPrePage = 10;
+$resultPrePage = 12;
 $page = 1;
 if (isset($_GET["page"])) {
     $pNum = $_GET["page"];
@@ -63,22 +63,7 @@ $offset = ($page - 1) * $resultPrePage;
     ?>
 
     <div class="container-fluid">
-        <!-- sp -->
-        <!-- spinnerModel -->
-        <!-- <div class="modal justify-content-center m-0" tabindex="-1" id="spin" data-bs-backdrop="static">
-            <div class="modal-dialog">
-                <div class=" text-center  sp ">
-                    <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- spinnerModel -->
-
-
-        <!-- sp -->
+       
         <!-- head start-->
         <div class="row mt-2">
             <div class="col-12 col-md-2">Hello, <?php echo ($fName); ?></div>
@@ -131,8 +116,7 @@ $offset = ($page - 1) * $resultPrePage;
             $imgData = $imgRs->fetch_assoc();
             $path = $imgData["path"];
         ?>
-            <div class="col-11 offset-1 ps-5 ms-5 mt-2 mb-2 col-sm-6 offset-sm-0 ms-sm-0  col-lg-4 col-xl-3 ps-md-5 pt-0">
-                <div class="card" style="width: 18rem;">
+                <div class="card p-0 m-3" style="width: 18rem;">
                     <img src="<?php echo ($path); ?>" class=" img-fluid" alt="..." style="width: 300px; height: 200px;" />
                     <div class="card-body">
                         <h4><?php echo ($productData["title"]); ?></h4>
@@ -265,7 +249,6 @@ $offset = ($page - 1) * $resultPrePage;
                         ?>
                     </div>
                 </div>
-            </div>
         <?php
         }
         ?>

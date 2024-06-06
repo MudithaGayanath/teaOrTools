@@ -28,11 +28,10 @@
                         $imgData = $imgRs -> fetch_assoc();
                         $path = $imgData["path"];
                         ?>
-                        <div class="col-11 offset-1 offset-sm-0  mb-2 col-sm-6 col-lg-4 col-xl-3 ms-5  ms-sm-0 ">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card p-0 m-3" style="width: 18rem;">
                                 <img src="<?php echo($path);?>" class=" img-fluid" alt="..." style="width: 300px; height: 200px;" />
                                 <div class="card-body">
-                                    <h4><?php echo($productData["title"]);?></h4>
+                                    <h1 class=" display-2 d-flex"><?php echo($productData["title"]);?></h1>
                                     <span class="badge <?php if ($productData["condition_id"] == 1 ){
                                         ?>text-bg-primary<?php
                                         }else{
@@ -323,7 +322,7 @@
                                     ?> 
                                 </div>
                             </div>
-                        </div>   
+                          
                         <?php
                 }
             }
