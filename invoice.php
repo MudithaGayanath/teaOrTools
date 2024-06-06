@@ -4,7 +4,7 @@
         include("connection.php");
         $customerEmail = $_SESSION["u"]["email"];
         $customerFname = $_SESSION["u"]["fname"];
-        $customerLname = $_SESSION["u"]["fname"];
+        $customerLname = $_SESSION["u"]["lname"];
         $orderId = $_GET["orderId"];
         $pId = $_GET["pId"];
         $qty = $_GET["qty"];

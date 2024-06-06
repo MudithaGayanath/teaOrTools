@@ -27,7 +27,6 @@ function register() {
     if (r.readyState == 4 && r.status == 200) {
       var text = r.responseText;
       if (text == "done") {
-        
         alert("You are successfully registered.Please login");
         loader.className = "d-none";
         window.location = "login.php";
@@ -42,8 +41,8 @@ function register() {
 }
 
 function login() {
- var loader = document.getElementById("loader-2");
-loader.className = "loader";
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var email = document.getElementById("email");
   var pw = document.getElementById("pw");
   var rem = document.getElementById("rme");
@@ -250,7 +249,6 @@ function addAddress() {
       } else {
         loader.className = "d-none";
         alert(text);
-
       }
     }
   };
@@ -307,6 +305,7 @@ function goToAddProduct() {
 }
 
 function changeBrand() {
+  var loader = document.getElementById("loader-2");
 
   var cat = document.getElementById("categorie");
   var brand = document.getElementById("brand");
@@ -315,7 +314,6 @@ function changeBrand() {
   var f = new FormData();
   var r = new XMLHttpRequest();
   cat.onchange = function () {
-    var loader = document.getElementById("loader-2");
     loader.className = "loader";
     f.append("catId", cat.value);
 
@@ -323,7 +321,6 @@ function changeBrand() {
       if (r.readyState == 4 && r.status == 200) {
         var text = r.responseText;
         if (text == "0") {
-          
           brand.innerHTML = "<option value='0'> Select Brand </option>";
           model.innerHTML = "<option value='0'> Select Model </option>";
           color.innerHTML = "<option value='0'> Select Model </option>";
@@ -343,7 +340,6 @@ function changeBrand() {
 }
 
 function changeModel() {
-
   var brand = document.getElementById("brand");
   var model = document.getElementById("model");
 
@@ -373,7 +369,6 @@ function changeModel() {
 }
 
 function changeColor() {
-
   var model = document.getElementById("model");
   var color = document.getElementById("color");
 
@@ -499,7 +494,7 @@ function myProductSearch() {
 
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
-    if ((r.status == 200) && (r.readyState == 4)) {
+    if (r.status == 200 && r.readyState == 4) {
       var text = r.responseText;
       if (text == "empty") {
         loader.className = "d-none";
@@ -515,7 +510,6 @@ function myProductSearch() {
 }
 
 function stor() {
-
   var storId = document.getElementById("stor");
   var row = document.getElementById("sortRow");
   var f = new FormData();
@@ -538,7 +532,6 @@ function stor() {
 }
 
 function active(id) {
-
   var home = document.getElementById("h");
   var profile = document.getElementById("p");
   var product = document.getElementById("mp");
@@ -563,11 +556,9 @@ function active(id) {
     wish.className = "nav-link  active";
   } else if (id == 7) {
     history.className = "nav-link  active";
-  } 
-  else if (id == 8) {
+  } else if (id == 8) {
     selling.className = "nav-link  active";
-  }
-  else if (id == 9) {
+  } else if (id == 9) {
     help.className = "nav-link  active";
   }
 }
@@ -697,7 +688,11 @@ function addToCartFormIndex() {
       }
     }
   };
-  r.open( "GET","addToCartProcess.php?pId=" + cid + "&qty=" + cartQty.value, true );
+  r.open(
+    "GET",
+    "addToCartProcess.php?pId=" + cid + "&qty=" + cartQty.value,
+    true
+  );
   r.send();
 }
 
@@ -794,7 +789,6 @@ function singalProudctTotal(price, items) {
         alert("Invalid QTY");
         window.location.reload();
       } else if (text == "over") {
-       
         alert("Over Limite");
         var newdf = parseInt(deliveryFee.value);
         var itot = price * items + newdf;
@@ -920,15 +914,12 @@ function buyNow(id) {
 }
 
 function updateQty(id, qty) {
-  var loader = document.getElementById("loader-2");
-  loader.className = "loader";
   var f = new FormData();
   f.append("pId", id);
   f.append("qty", qty);
   var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.status == 200 && r.readyState == 4) {
-      loader.className = "d-none";
       var text = r.responseText;
     }
   };
@@ -953,7 +944,6 @@ function invoice(orderId, pid, qty, total, deleveryFee) {
 }
 
 function printInvoice() {
-  
   var page = document.body.innerHTML;
   var restor = page;
   var invoice = document.getElementById("main");
@@ -1025,7 +1015,6 @@ function chnagePassword() {
 }
 
 function changeMenu() {
- 
   var cat = document.getElementById("cat");
   var searchRs = document.getElementById("searchRs");
   var main = document.getElementById("main");
@@ -1044,7 +1033,7 @@ function changeMenu() {
           main.className = "row mt-2 justify-content-center text-center  ";
           searchRs.className =
             "row mt-2 justify-content-center text-center d-none";
-            loader.className = "d-none";
+          loader.className = "d-none";
         } else {
           main.className = "row mt-2 justify-content-center text-center d-none";
           searchRs.innerHTML = text;
@@ -1307,8 +1296,6 @@ if (viwe == 0) {
 }
 
 function sellerMonthlyIncome() {
-  var loader = document.getElementById("loader-2");
-  loader.className = "loader";
   const div = document.getElementById("myChart");
 
   function months(config) {
@@ -1329,7 +1316,6 @@ function sellerMonthlyIncome() {
   r.onreadystatechange = function () {
     if (r.readyState == 4 && r.status == 200) {
       var text = r.responseText;
-      loader.className = "d-none";
       var obj = JSON.parse(text);
       var length = Object.keys(obj).length;
       const labels = months({ count: monthNumber });
@@ -1489,27 +1475,36 @@ function advancedSearchProcess() {
   var model = document.getElementById("model");
   var color = document.getElementById("color");
   var condition = document.getElementById("condition");
-
-  var f = new FormData();
-  f.append("categorie", categorie.value);
-  f.append("brand", brand.value);
-  f.append("model", model.value);
-  f.append("color", color.value);
-  f.append("condition", condition.value);
-  f.append("text", text.value);
-
-  var r = new XMLHttpRequest();
-  r.onreadystatechange = function () {
-    if (r.status == 200 && r.readyState == 4) {
-      var rText = r.responseText;
-      main.innerHTML = rText;
-    }
-  };
-  r.open("POST", "advancedSearchProcess.php", true);
-  r.send(f);
+  if ( categorie.value == 0 && text.value == ""){
+    alert("Select categorie or enter prodct title ");
+  } else{
+    var f = new FormData();
+    f.append("categorie", categorie.value);
+    f.append("brand", brand.value);
+    f.append("model", model.value);
+    f.append("color", color.value);
+    f.append("condition", condition.value);
+    f.append("text", text.value);
+    
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+      if (r.status == 200 && r.readyState == 4) {
+        var rText = r.responseText;
+        
+  
+          main.innerHTML = rText;
+        
+      }
+    };
+    r.open("POST", "advancedSearchProcess.php", true);
+    r.send(f);
+  }
+ 
 }
 
 function changeUserStatus(i) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var email = document.getElementById(i).value;
   var f = new FormData();
   f.append("e", email);
@@ -1521,6 +1516,7 @@ function changeUserStatus(i) {
       if (text == "done") {
         window.location.reload();
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -1534,21 +1530,27 @@ function userFilter() {
   var filterRow = document.getElementById("filterResultRow");
   var main = document.getElementById("mainRow");
   a.onchange = function () {
-    var f = new FormData();
-    f.append("a", a.value);
+    if (a.value == 1) {
+      window.location = "manageUser.php?orderBy=DESC";
+    } else if (a.value == 2) {
+      window.location = "manageUser.php?orderBy=ASC";
+    } else {
+      var f = new FormData();
+      f.append("a", a.value);
 
-    var r = new XMLHttpRequest();
-    r.onreadystatechange = function () {
-      if (r.readyState == 4 && r.status == 200) {
-        var text = r.responseText;
-        main.className = "d-none";
-        filterRow.innerHTML = text;
-        filterRow.className =
-          "row justify-content-center justify-content-lg-around d-flex";
-      }
-    };
-    r.open("POST", "userFilterProcess.php", true);
-    r.send(f);
+      var r = new XMLHttpRequest();
+      r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+          var text = r.responseText;
+          main.className = "d-none";
+          filterRow.innerHTML = text;
+          filterRow.className =
+            "row justify-content-center justify-content-lg-around d-flex";
+        }
+      };
+      r.open("POST", "userFilterProcess.php", true);
+      r.send(f);
+    }
   };
 }
 
@@ -1606,6 +1608,8 @@ function productFilter() {
 }
 
 function changeProductStatusByAdmin(pid) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var f = new FormData();
   f.append("pid", pid);
   var r = new XMLHttpRequest();
@@ -1615,6 +1619,7 @@ function changeProductStatusByAdmin(pid) {
       if (text == "done") {
         window.location.reload();
       } else {
+        loader.className = "d-none";
         alert(text);
       }
     }
@@ -1683,13 +1688,20 @@ function searchProduct() {
 
 function goToCat() {
   window.location = "cat.php";
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
 }
 function addCatMode() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var m = new bootstrap.Modal(document.getElementById("addCat"));
+  loader.className = "d-none";
   m.show();
 }
 
 function addCat() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var name = document.getElementById("name");
   var f = new FormData();
   f.append("name", name.value);
@@ -1699,10 +1711,13 @@ function addCat() {
     if (r.readyState == 4 && r.status == 200) {
       var text = r.responseText;
       if (text == "empty") {
+        loader.className = "d-none";
         alert("Enter categorie");
       } else if (text == "long") {
+        loader.className = "d-none";
         alert("Categorie name too long ( Max : 45 characters )");
       } else if (text == "have") {
+        loader.className = "d-none";
         alert("Categorie name is already have");
       } else {
         alert(text);
@@ -1743,6 +1758,8 @@ function goToPanel() {
 }
 
 function goToBrand() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   window.location = "brand.php";
 }
 
@@ -1751,7 +1768,9 @@ function addBrandMode() {
   m.show();
 }
 
-function goToModel(){
+function goToModel() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   window.location = "model.php";
 }
 
@@ -1785,8 +1804,10 @@ function addModel() {
   r.send(f);
 }
 
-function goToColor(){
-  window.location= "color.php";
+function goToColor() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
+  window.location = "color.php";
 }
 
 function addColorModel() {
@@ -1819,8 +1840,10 @@ function addColor() {
   r.send(f);
 }
 
-function goToBandC(){
-  window.location= "brandAndCat.php";
+function goToBandC() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
+  window.location = "brandAndCat.php";
 }
 
 function addBandCModel() {
@@ -1851,8 +1874,10 @@ function addBandC() {
   r.send(f);
 }
 
-function goToMandB(){
-  window.location= "modelAndBrand.php";
+function goToMandB() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
+  window.location = "modelAndBrand.php";
 }
 
 function addMandBModel() {
@@ -1883,8 +1908,10 @@ function addMandB() {
   r.send(f);
 }
 
-function goToMandC(){
-  window.location= "modelAndColor.php";
+function goToMandC() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
+  window.location = "modelAndColor.php";
 }
 
 function addMandCModel() {
@@ -1915,26 +1942,26 @@ function addMandC() {
   r.send(f);
 }
 
-function historyFilter(){
+function historyFilter() {
   var p = document.getElementById("filter");
   var rr = document.getElementById("rs");
   var mr = document.getElementById("main");
   p.onchange = function () {
-    if (p.value == 1 ){
-      window.location ="history.php?orderBy=DESC";
-    }else if ( p.value == 2 ){
-      window.location ="history.php?orderBy=ASC";
-    }else{
-
+    if (p.value == 1) {
+      window.location = "history.php?orderBy=DESC";
+    } else if (p.value == 2) {
+      window.location = "history.php?orderBy=ASC";
+    } else {
       var f = new FormData();
       f.append("p", p.value);
       var r = new XMLHttpRequest();
       r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
           var text = r.responseText;
-            mr.className = "d-none";
-            rr.innerHTML = text;
-            rr.className =" row justify-content-center justify-content-lg-around d-flex";
+          mr.className = "d-none";
+          rr.innerHTML = text;
+          rr.className =
+            " row justify-content-center justify-content-lg-around d-flex";
         }
       };
       r.open("POST", "historyFilterProcess.php", true);
@@ -1943,50 +1970,46 @@ function historyFilter(){
   };
 }
 
-
 var toFeedPId;
-function feedModel(id,){
+function feedModel(id) {
   toFeedPId = id;
   var m = new bootstrap.Modal(document.getElementById("feedModel"));
   m.show();
 }
 
-function addFeedProcess(){
+function addFeedProcess() {
   var comment = document.getElementById("comment");
   var type = document.getElementById("type");
   var pid = toFeedPId;
-      var f = new FormData();
-      f.append("pid", pid);
-      f.append("comment", comment.value);
-      f.append("type", type.value);
-      var r = new XMLHttpRequest();
-      r.onreadystatechange = function () {
-        if (r.status == 200 && r.readyState == 4) {
-          var text = r.responseText;
-           if (text == "have"){
-            alert("You have already added feedback for this product");
-           }
-           else if ( text == "empty"){
-            alert("Enter your comment");
-           }
-           else if ( text == "long"){
-            alert("Comment is too long (Max:200 charactors)");
-           }
-           else if ( text == "done"){
-            alert("Comment added successfully");
-            window.location.reload();
-           }else{
-            alert(text);
-           }
-        }
-      };
-      r.open("POST", "addFeedProcess.php", true);
-      r.send(f);
-    
-  
+  var f = new FormData();
+  f.append("pid", pid);
+  f.append("comment", comment.value);
+  f.append("type", type.value);
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.status == 200 && r.readyState == 4) {
+      var text = r.responseText;
+      if (text == "have") {
+        alert("You have already added feedback for this product");
+      } else if (text == "empty") {
+        alert("Enter your comment");
+      } else if (text == "long") {
+        alert("Comment is too long (Max:200 charactors)");
+      } else if (text == "done") {
+        alert("Comment added successfully");
+        window.location.reload();
+      } else {
+        alert(text);
+      }
+    }
+  };
+  r.open("POST", "addFeedProcess.php", true);
+  r.send(f);
 }
 
-function goToUserDetails(id){
+function goToUserDetails(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
   var email = document.getElementById(id).innerHTML;
   var f = new FormData();
   f.append("email", email);
@@ -1994,25 +2017,128 @@ function goToUserDetails(id){
   r.onreadystatechange = function () {
     if (r.status == 200 && r.readyState == 4) {
       var text = r.responseText;
-  
-      window.location = "userDetails.php?email="+text;
+
+      window.location = "userDetails.php?email=" + text;
     }
   };
   r.open("POST", "expoEmailProcess.php", true);
   r.send(f);
-
 }
 
-function pdf(){
+function pdf() {
   var body = document.body.innerHTML;
   var content = document.getElementById("conten");
   var row = document.getElementById("row");
-  row.className="d-none";
+  row.className = "d-none";
   document.body.innerHTML = content.innerHTML;
   window.print();
   document.body.innerHTML = body;
 }
 
-function productDetails(id){
-  window.location = "productDetails.php?pId="+id;
+function productDetails(id) {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
+  window.location = "productDetails.php?pId=" + id;
+}
+
+function buyAll() {
+  var loader = document.getElementById("loader-2");
+  loader.className = "loader";
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.status == 200 && r.readyState == 4) {
+      var text = r.responseText;
+      if ( text == "noAddress"){
+        alert("Add your address");
+        window.location = "userProfile.php";
+      }else{
+        loader.className = "d-none";
+        var obj = JSON.parse(text);
+       
+      
+      // Payment completed. It can be a successful failure.
+      payhere.onCompleted = function onCompleted(orderId) {
+        console.log("Payment completed. OrderID:" + orderId);
+        // Note: validate the payment and show success or failure page to the customer
+       
+        cartInvoice();
+      };
+
+      // Payment window closed
+      payhere.onDismissed = function onDismissed() {
+        // Note: Prompt user to pay again or show an error page
+        console.log("Payment dismissed" + error);
+      };
+
+      // Error occurred
+      payhere.onError = function onError(error) {
+        // Note: show an error page
+        console.log("Error:" + error);
+      };
+
+      // Put the payment variables here
+      var payment = {
+        sandbox: true,
+        merchant_id: obj["mid"], // Replace your Merchant ID
+        return_url: "http://localhost/teaOrTools/cart.php", // Important
+        cancel_url: "http://localhost/teaOrTools/cart.php", // Important
+        notify_url: "http://sample.com/notify",
+        order_id: obj["orderId"],
+        items: obj["productTitle"],
+        amount: obj["total"],
+        currency: obj["currency"],
+        hash: obj["hash"], // *Replace with generated hash retrieved from backend
+        first_name: obj["fname"],
+        last_name: obj["lanme"],
+        email: obj["email"],
+        phone: obj["mobile"],
+        address: obj["address"],
+        city: obj["city"],
+        country: "Sri Lanka",
+        delivery_address: obj["address"],
+        delivery_city: obj["city"],
+        delivery_country: "Sri Lanka",
+        custom_1: "",
+        custom_2: "",
+      };
+
+
+      payhere.startPayment(payment);
+    }
+      
+    }
+  };
+  r.open("POST", "buyAllProccess.php", true);
+  r.send();
+}
+
+function cartInvoice(){
+  window.location = "cartInvoice.php";
+}
+function cartPdf(){
+  var body = document.body.innerHTML;
+  var content = document.getElementById("invoice");
+  var row = document.getElementById("btn");
+  row.className = "d-none";
+  document.body.innerHTML = content.innerHTML;
+  window.print();
+
+  document.body.innerHTML = body;
+}
+
+function r(){
+  window.location.reload();
+}
+
+function adReoprt(){
+  var text = "<h1>Panel Short Report</h1>";
+  var r = document.getElementById("adReport").innerHTML;
+  var btn = document.getElementById("save");
+  text += r;
+  var body = document.body.innerHTML;
+  btn.classNam= "d-none";
+  document.body.innerHTML = text;
+  window.print();
+  window.location.reload();
+
 }

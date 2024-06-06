@@ -9,9 +9,64 @@
 
 .loader{
     position: fixed;
-    margin: 0px;
+    margin-top: 0%;
+    padding: 0px;
     width: 100%;
     height: 100vh;
     background-color: transparent;
-    z-index: 6;
+    background-size: cover;
+    z-index: 10;
+}
+
+.invoice {
+    padding: 30px;
+}
+.invoice-header {
+    margin-bottom: 20px;
+}
+.invoice-title {
+    margin-top: 0;
+    line-height: 1;
+}
+.invoice-info {
+    margin-bottom: 30px;
+}
+.invoice-details {
+    margin-bottom: 40px;
+}
+.table-invoice {
+    margin-bottom: 30px;
+}
+.invoice-footer {
+    text-align: center;
+    color: #888;
+}
+.footer {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+}
+.footer a {
+    color: #007bff;
+}
+.footer a:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+.footer .social-icons a {
+    margin-right: 15px;
+    font-size: 18px;
+    color: #495057;
+}
+.footer .social-icons a:hover {
+    color: #007bff;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spinners in Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }

@@ -20,6 +20,7 @@ if (isset($_SESSION["a"])) {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="bootstrap.css">
+                <link rel="stylesheet" href="style.css">
                 <title><?php echo ($name); ?></title>
             </head>
 
@@ -59,14 +60,31 @@ if (isset($_SESSION["a"])) {
                         </div>
                     </div>
                 </nav>
-
+                <!-- l1 -->
+                <div class="loader justify-content-center " id="loader">
+                    <div class=" text-center  sp ">
+                        <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- l1 -->
+                <!-- l2 -->
+                <div class="loader d-none " id="loader-2">
+                    <div class=" text-center  sp ">
+                        <div class="spinner-border position-absolute text-primary" style="width: 5rem; height: 5rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- l2 -->
                 <div class=" container-fluid">
                     <h1 class=" text-center">User Details</h1>
                     <div class="row">
                         <!-- img -->
                         <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center  p-3 py-0 py-md-5">
                             <?php
-                            
+
 
                             $imgRs = Database::search("SELECT * FROM `user_img` WHERE `user_email`='" . $email . "'");
 
@@ -143,7 +161,7 @@ if (isset($_SESSION["a"])) {
                                 <?php
                                 if ($addressRs->num_rows == 0) {
                                 ?>
-                                  <p class=" text-center mt-5 fs-4">Address not update</p>
+                                    <p class=" text-center mt-5 fs-4">Address not update</p>
                                 <?php
                                 } else {
                                 ?>
@@ -183,21 +201,21 @@ if (isset($_SESSION["a"])) {
                                 }
                                 ?>
 
-<div class="row">
+                                <div class="row">
 
-              <?php
-              if ($status == 1) {
-              ?>
-                <button class="btn btn-primary col-10 offset-1 mt-2" onclick="changeUserStatus('email')">Active</button>
-              <?php
-              } else {
-              ?>
-                <button class="btn btn-danger col-10 offset-1 mt-2" onclick="changeUserStatus('email')">Inactive</button>
+                                    <?php
+                                    if ($status == 1) {
+                                    ?>
+                                        <button class="btn btn-primary col-10 offset-1 mt-2" onclick="changeUserStatus('email')">Active</button>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <button class="btn btn-danger col-10 offset-1 mt-2" onclick="changeUserStatus('email')">Inactive</button>
 
-              <?php
-              }
-              ?>
-              </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
 
 
 
@@ -206,7 +224,17 @@ if (isset($_SESSION["a"])) {
                         </div>
                     </div>
                 </div>
-<script src="script.js"></script>
+                <script src="script.js"></script>
+                <script src="jqery.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $("#loader").animate({
+                            opacity: "0%"
+                        }, 1000, function() {
+                            $("#loader").hide();
+                        })
+                    });
+                </script>
             </body>
 
             </html>

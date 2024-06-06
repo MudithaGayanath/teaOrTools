@@ -40,31 +40,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $path = $imgData["path"];
                         }
 ?>
-                        <div class="card m-3 p-0" style="width: 19rem;">
-                            <img src="<?php echo ($path); ?>" class=" img-fluid " style="width: 300px; height: 200px;"  alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo ($name); ?></h5>
-                                <p class="card-text m-0" id="<?php echo ($i) ?>"> <?php echo ($email); ?></p>
-                                <p class="card-text m-0"><?php echo ($mobile); ?></p>
-                                <p class="card-text m-0"><?php echo ($gender); ?></p>
-                                <p class="card-text m-0"><?php echo ($joined_date); ?>(Joined Date)</p>
-                                <div class="row">
+                        <div class="card m-3 p-0" style="width: 18rem;">
+            <img src="<?php echo ($path); ?>" class=" img-fluid " alt="..." style="width: 300px; height: 200px;">
+            <div class="card-body" onclick="goToUserDetails(<?php echo ($i) ?>);">
+              <h5 class="card-title"><?php echo ($name); ?></h5>
+              <p class="card-text m-0" id="<?php echo ($i) ?>"> <?php echo ($email); ?></p>
+              <p class="card-text m-0"><?php echo ($mobile); ?></p>
+              <p class="card-text m-0"><?php echo ($gender); ?></p>
+              <p class="card-text m-0"><?php echo ($joined_date); ?>(Joined Date)</p>
 
-              <?php
-              if ($status == 1) {
-              ?>
-                <button class="btn btn-primary col-10 offset-1 mt-2" onclick="changeUserStatus(<?php echo ($i); ?>)">Active</button>
-              <?php
-              } else {
-              ?>
-                <button class="btn btn-danger col-10 offset-1 mt-2" onclick="changeUserStatus(<?php echo ($i); ?>)">Inactive</button>
-
-              <?php
-              }
-              ?>
-              </div>
-                            </div>
-                        </div>
+            </div>
+          </div>
                     <?php
                     }
                 } else {

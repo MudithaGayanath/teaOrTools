@@ -13,7 +13,7 @@ if (isset($_SESSION["u"])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="bootstrap.css" />
         <link rel="stylesheet" href="style.css">
-        <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <title>My Sales | Tea or Tools</title>
     </head>
 
@@ -122,13 +122,21 @@ if (isset($_SESSION["u"])) {
 
                         $favoriteProductFromInvoiceRs = Database::search("SELECT MAX(invoice.product_id) AS `pid` FROM `invoice` INNER JOIN `product` ON
                     invoice.product_id=product.product_id WHERE `user_email`='" . $email . "'");
+
+
+
                         if ($favoriteProductFromInvoiceRs->num_rows > 0) {
 
                             $fpfiData = $favoriteProductFromInvoiceRs->fetch_assoc();
                             $fpfiPid = $fpfiData["pid"];
+
                             $favoriteProductRs = Database::search("SELECT * FROM `product` WHERE `product_id`='" . $fpfiPid . "'");
-                            $favoriteProductData = $favoriteProductRs->fetch_assoc();
-                            $fpName = $favoriteProductData["title"];
+                            if ($favoriteProductRs -> num_rows > 0){
+                                
+                                                            $favoriteProductData = $favoriteProductRs->fetch_assoc();
+                                                            $fpName = $favoriteProductData["title"];
+
+                            }
                         }
 
                         ?>
@@ -142,7 +150,7 @@ if (isset($_SESSION["u"])) {
             <div class="row">
                 <div class="col-12 col-md-9">
 
-                    <h1>Monthly Income</h1>
+                    <h1>Income Flow</h1>
                 </div>
                 <div class="col-12 col-md-3 text-end">
 
@@ -150,8 +158,8 @@ if (isset($_SESSION["u"])) {
                 </div>
             </div>
 
-            <div class="row ">
-                <div class="col-12  col-lg-10 offset-lg-1">
+            <div class="row justify-content-center ">
+                <div class="col-12 col-lg-9 ">
                     <canvas id="myChart"></canvas>
                 </div>
             </div>

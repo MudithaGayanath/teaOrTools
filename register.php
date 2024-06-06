@@ -53,11 +53,11 @@ include("connection.php");
                         <input type="text" id="email" class=" form-control" />
                     </div>
                     <div class="col-12">
-                        <label for="pw1">password</label>
+                        <label for="pw1">Password</label>
                         <input type="password" id="pw1" class=" form-control" />
                     </div>
                     <div class="col-12">
-                        <label for="pw2">Retype password</label>
+                        <label for="pw2">Retype Password</label>
                         <input type="password" id="pw2" class=" form-control" />
                     </div>
                     <div class="col-12 col-lg-6">
@@ -88,7 +88,7 @@ include("connection.php");
     </div>
     
     <?php
-    // include("footer.php");
+     include("footer.php");
     ?>
     <script src="script.js"></script>
     <script src="jqery.min.js"></script>

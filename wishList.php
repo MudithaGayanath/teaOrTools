@@ -134,7 +134,7 @@
                                 <?php
                             }
                         }else{?>
-                        <div class=" col-12 col-md-6  offset-md-2">
+                        
                             <div class="card">
                                 <div class="card-body text-center">
                                 <h2>Your Wish List is Empty</h2>
@@ -142,7 +142,7 @@
                                 <a href="index.php" class="btn btn-primary">Browse Products</a>
                                 </div>
                             </div>
-                        </div>
+                       
                         <?php
                         }
                         

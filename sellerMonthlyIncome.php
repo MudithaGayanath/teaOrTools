@@ -34,7 +34,7 @@ if (isset($_SESSION["u"])) {
     //change here
     //change here
     $rs = Database::search("SELECT * FROM `invoice` INNER JOIN `product` ON
-    invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%2024-04%'");
+    invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%".$currentDate."%'");
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -51,17 +51,20 @@ if (isset($_SESSION["u"])) {
             $data = $rs -> fetch_assoc();
             $income = 0;
             $iRs = Database::search("SELECT SUM(`total`) AS `tot`  FROM `invoice` INNER JOIN `product` ON
-            invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%2024-04%'");
+            invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%".$currentDate."%'");
             $inData = $iRs -> fetch_assoc();
             $income = $inData["tot"];
 
             $mostSellingItem = "";
             $mRS = Database::search("SELECT MAX(invoice.product_id) AS pid FROM `invoice` INNER JOIN `product` ON
-            invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%2024-04%'");
+            invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%".$currentDate."%'");
             $mData = $mRS -> fetch_assoc();
             $mProduct = Database::search("SELECT `title` FROM `product` WHERE `product_id`='".$mData["pid"]."'");
-            $mpData = $mProduct -> fetch_assoc();
-            $mostSellingItem = $mpData["title"];
+            if ($mProduct -> num_rows >0 ){
+
+                $mpData = $mProduct -> fetch_assoc();
+                $mostSellingItem = $mpData["title"];
+            }
 
             $name = $_SESSION["u"]["fname"]." ".$_SESSION["u"]["lname"];
             
@@ -96,7 +99,7 @@ if (isset($_SESSION["u"])) {
                     <tbody>
                         <?php
                             $tRs = Database::search("SELECT * FROM `invoice` INNER JOIN `product` ON
-                            invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%2024-04%'");
+                            invoice.product_id=product.product_id  WHERE `user_email`='" . $email . "' AND `date_time` LIKE '%".$currentDate."%'");
                             for ($i=0; $i < $tRs -> num_rows; $i++) { 
                                 $tData = $tRs -> fetch_assoc();
                                 $title = $tData["title"];

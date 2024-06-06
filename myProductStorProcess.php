@@ -34,8 +34,7 @@
                 $imgData = $imgRs -> fetch_assoc();
                 $imgPath = $imgData["path"];
                 ?>
-                <div class="col-10 offset-1 ms-5 ms-md-0 mt-3 col-md-6 offset-md-0 col-xl-4 mb-3  " >
-                    <div class="card" style="width: 18rem;">
+                    <div class="card p-0 m-3" style="width: 18rem;">
                         <img src="<?php echo($imgPath);?>" class=" img-fluid" alt="..."  style="width: 300px; height: 200px;">
                         <div class="card-body text-center">
                             <h4 class="m-0"><?php echo($proData["title"]);?></h4>
@@ -45,7 +44,7 @@
                             <button class="btn btn-success col-5">Update</button>
                         </div>
                     </div>
-                </div>
+                
                 <?php
             }
         }else{
