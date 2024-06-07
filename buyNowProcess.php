@@ -72,7 +72,7 @@
                             $array["hash"] = $hash;
 
                             echo(json_encode($array));
-                            //echo($fname .",".$productTitle." , ".$pid ." , ". $qty ." , ".$deliveryFee." , ". $tot.", address".$userAddress);
+                            
                         }
 
 

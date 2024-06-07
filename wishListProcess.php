@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if ( isset ( $_SESSION["u"]) ){
+    if ( isset ( $_SESSION["u"])  ){
         $email = $_SESSION["u"]["email"];
         $pId = $_GET["pId"];
         include("connection.php");

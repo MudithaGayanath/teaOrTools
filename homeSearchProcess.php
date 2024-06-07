@@ -31,7 +31,7 @@
                             <div class="card p-0 m-3" style="width: 18rem;">
                                 <img src="<?php echo($path);?>" class=" img-fluid" alt="..." style="width: 300px; height: 200px;" />
                                 <div class="card-body">
-                                    <h1 class=" display-2 d-flex"><?php echo($productData["title"]);?></h1>
+                                    <h4 class="  d-flex"><?php echo($productData["title"]);?></h4>
                                     <span class="badge <?php if ($productData["condition_id"] == 1 ){
                                         ?>text-bg-primary<?php
                                         }else{

@@ -2134,11 +2134,29 @@ function adReoprt(){
   var text = "<h1>Panel Short Report</h1>";
   var r = document.getElementById("adReport").innerHTML;
   var btn = document.getElementById("save");
-  text += r;
-  var body = document.body.innerHTML;
-  btn.classNam= "d-none";
-  document.body.innerHTML = text;
-  window.print();
-  window.location.reload();
 
+
+  btn.classNam= "d-none";
+  // document.body.innerHTML = text;
+  // window.print();
+  
+  var dataUrl = document.getElementById("myChart").toDataURL();
+  var windowContent = "<!DOCTYPE html>";
+  windowContent += "<html>";
+  windowContent += "<head><title>Panel Short Report</title></head>";
+  windowContent += "<body>";
+  windowContent += text;
+  windowContent += "<div style='justify-content: center; display: flex;'>"+r+"</div>";
+  windowContent += '<img src="' + dataUrl + '">';
+  windowContent += "</body>";
+  windowContent += "</html>";
+
+  var printWin = window.open("", "", "width=800,height=600");
+  printWin.document.open();
+  printWin.document.write(windowContent);
+  printWin.document.close();
+  printWin.focus();
+  printWin.print();
+  printWin.close();
+window.location.reload();
 }
